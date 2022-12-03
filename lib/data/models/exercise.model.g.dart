@@ -25,7 +25,7 @@ ExerciseDetailModel _$ExerciseDetailModelFromJson(Map<String, dynamic> json) {
     videoUrl: json['videoUrl'] as String?,
     difficulty: json['difficulty'] as String?,
     instructions: json['instructions'] as String?,
-    caloriesBurn: json['caloriesBurn'] as double?,
+    caloriesBurn: (json['caloriesBurn'] as num?)?.toDouble(),
   );
 }
 
