@@ -10,7 +10,7 @@ class Diet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(DietController(Get.find()));
+    final controller = Get.put(DietController(Get.find(), Get.find()));
     return Scaffold(
       body: SafeArea(
         bottom: false,

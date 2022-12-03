@@ -42,3 +42,18 @@ class Food {
 
   Map<String, dynamic> toJson() => _$FoodToJson(this);
 }
+
+@JsonSerializable()
+class FoodLog {
+  final String foodId;
+  final String foodName;
+  final int number;
+  final int totalCaloriesIntake;
+
+  FoodLog(this.foodId, this.foodName, this.number, this.totalCaloriesIntake);
+
+  factory FoodLog.fromJson(Map<String, dynamic> json) =>
+      _$FoodLogFromJson(json);
+
+  Map<String, dynamic> toJson() => _$FoodLogToJson(this);
+}

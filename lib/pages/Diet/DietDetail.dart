@@ -1,4 +1,5 @@
 import 'package:fitness_mobile/data/models/diet.model.dart';
+import 'package:fitness_mobile/pages/Diet/controllers/diet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -70,29 +71,34 @@ class DietDetailView extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.all(20.0),
-        margin: const EdgeInsets.all(20.0),
-        decoration: BoxDecoration(
-          color: const Color.fromRGBO(219, 228, 255, 1.0),
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const <Widget>[
-            Text(
-              'Track my food',
-              style: TextStyle(
-                fontSize: 16.0,
-                color: Color.fromRGBO(122, 158, 255, 1.0),
+      bottomNavigationBar: InkWell(
+        onTap: () {
+          Get.find<DietController>().logFood(food);
+        },
+        child: Container(
+          padding: const EdgeInsets.all(20.0),
+          margin: const EdgeInsets.all(20.0),
+          decoration: BoxDecoration(
+            color: const Color.fromRGBO(219, 228, 255, 1.0),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const <Widget>[
+              Text(
+                'Track my food',
+                style: TextStyle(
+                  fontSize: 16.0,
+                  color: Color.fromRGBO(122, 158, 255, 1.0),
+                ),
               ),
-            ),
-            Icon(
-              Icons.add,
-              size: 25.0,
-              color: Color.fromRGBO(122, 158, 255, 1.0),
-            )
-          ],
+              Icon(
+                Icons.add,
+                size: 25.0,
+                color: Color.fromRGBO(122, 158, 255, 1.0),
+              )
+            ],
+          ),
         ),
       ),
     );

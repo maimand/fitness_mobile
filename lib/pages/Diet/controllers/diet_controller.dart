@@ -1,13 +1,15 @@
 import 'package:fitness_mobile/data/models/diet.model.dart';
 import 'package:fitness_mobile/data/repositories/diet_repository.dart';
+import 'package:fitness_mobile/services/log_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class DietController extends GetxController {
   final DietRepository repository;
+  final LogService logService;
 
-  DietController(this.repository);
+  DietController(this.repository, this.logService);
 
   RxList<Food> foods = <Food>[].obs;
   int currentPage = 1;
@@ -37,12 +39,11 @@ class DietController extends GetxController {
   }
 
   void onLoadMore() async {
-    if(foods.length < total) {
+    if (foods.length < total) {
       currentPage++;
       await getFood();
       refreshController.loadComplete();
     }
-
   }
 
   void onRefresh() async {
@@ -62,5 +63,17 @@ class DietController extends GetxController {
     searchController.clear();
     await Future.delayed(const Duration(seconds: 2));
     onRefresh();
+  }
+
+  void logFood(Food food) {
+    final log =
+        FoodLog(food.id ?? '', food.name ?? '', 1, food.calo?.toInt() ?? 0);
+    try {
+      logService.logFood(log);
+      Get.snackbar('Success', 'Added to your diet today');
+
+    } on Exception catch (e) {
+      Get.snackbar('Log Error', e.toString());
+    }
   }
 }
