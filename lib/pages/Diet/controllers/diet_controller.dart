@@ -3,11 +3,13 @@ import 'package:fitness_mobile/data/repositories/diet_repository.dart';
 import 'package:fitness_mobile/services/log_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class DietController extends GetxController {
   final DietRepository repository;
   final LogService logService;
+  final ImagePicker _picker = ImagePicker();
 
   DietController(this.repository, this.logService);
 
@@ -74,6 +76,38 @@ class DietController extends GetxController {
 
     } on Exception catch (e) {
       Get.snackbar('Log Error', e.toString());
+    }
+  }
+
+  void searchWithCamera() async {
+    final XFile? pickedFile = await _picker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 100,
+    );
+
+    if (pickedFile == null) {
+      return;
+    }
+    try {
+      repository.predictFood(pickedFile.path);
+    } on Exception catch (e) {
+      Get.snackbar('Predict Food Failed', e.toString());
+    }
+  }
+
+  void searchWithGallery() async {
+    final XFile? pickedFile = await _picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 100,
+    );
+
+    if (pickedFile == null) {
+      return;
+    }
+    try {
+      repository.predictFood(pickedFile.path);
+    } on Exception catch (e) {
+      Get.snackbar('Predict Food Failed', e.toString());
     }
   }
 }
