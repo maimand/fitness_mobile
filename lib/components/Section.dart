@@ -18,6 +18,7 @@ class Section extends StatelessWidget {
             padding: const EdgeInsets.only(left: 20.0, top: 10.0),
             scrollDirection: Axis.horizontal,
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
                 children:
                     (horizontalList != null) ? horizontalList! : []),
           )
