@@ -50,6 +50,8 @@ class DailyTip extends StatelessWidget {
             margin: const EdgeInsets.only(top: 10.0),
             child: Text(
               element['subtitle'] ?? '',
+              maxLines: 4,
+              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 color: Colors.black45,
                 fontSize: 14.0,
@@ -62,17 +64,17 @@ class DailyTip extends StatelessWidget {
               vertical: 5.0,
               horizontal: 15.0,
             ),
-            child: const Text(
-              'More',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(
                 Radius.circular(20.0),
               ),
               color: Colors.lightBlue,
+            ),
+            child: const Text(
+              'More',
+              style: TextStyle(
+                color: Colors.white,
+              ),
             ),
           ),
         ],
