@@ -36,9 +36,14 @@ class DailyTip extends StatelessWidget {
               ),
             ),
           ),
-          Text(
-            element['title'] ?? '',
-            style: const TextStyle(fontSize: 14.0),
+          SizedBox(
+            width: width,
+            child: Text(
+              element['title'] ?? '',
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 14.0),
+            ),
           ),
           Container(
             width: width,

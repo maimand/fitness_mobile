@@ -156,7 +156,7 @@ class Programs extends StatelessWidget {
                               'subtitle':
                                   'Losing weight and getting fit is really straightforward when you come to think of it. It doesn’t require crash-dieting, drinking detox teas or sacrificing the food you love.',
                               'image': 'assets/images/image011.jpg',
-                              'url': 'https://www.snapfitness_mobile.com/ae/blog/how-to-lose-weight-in-the-gym-4-simple-steps/',
+                              'url': 'https://www.wikihow.com/Lose-Weight-at-the-Gym',
                             },
                           ),
                         ],
