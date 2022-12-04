@@ -49,6 +49,9 @@ dependencies:
   webview_flutter: ^3.0.4
   pull_to_refresh: ^2.0.0
   image_picker: ^0.8.6
+  fl_chart: ^0.55.2
+  intl: ^0.17.0
+  grouped_list: ^5.1.2
 
 dev_dependencies:
   flutter_test:

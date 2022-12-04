@@ -1,6 +1,6 @@
 import 'package:fitness_mobile/pages/Diet/Diet.dart';
 import 'package:fitness_mobile/pages/Program/Programs.dart';
-import 'package:fitness_mobile/tabs/Results.dart';
+import 'package:fitness_mobile/pages/Result/Results.dart';
 import 'package:flutter/material.dart';
 
 class Tabs extends StatelessWidget {

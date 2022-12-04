@@ -26,7 +26,7 @@ class DioInterceptors extends InterceptorsWrapper {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    if (err.response?.statusCode == 401) {
+    if (err.response?.statusCode == 401 || err.response?.statusCode == 403) {
       Get.find<AuthService>().logout();
     }
     super.onError(err, handler);

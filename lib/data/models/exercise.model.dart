@@ -52,9 +52,9 @@ class ExerciseLogRequest {
 @JsonSerializable()
 class ExerciseLog {
   final String? exerciseName;
-  final String? reps;
+  final int? reps;
   final DateTime? time;
-  final String? totalCaloriesBurn;
+  final int? totalCaloriesBurn;
 
   ExerciseLog(this.exerciseName, this.reps, this.time, this.totalCaloriesBurn);
 

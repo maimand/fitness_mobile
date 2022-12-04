@@ -21,4 +21,14 @@ class LogService extends GetxService {
         exercise.name ?? '', 8, (exercise.caloriesBurn?.toInt() ?? 0) * 8);
     repository.postExerciseLog(log: log);
   }
+
+  Future<List<FoodLog>> getDietLogs() async {
+    final res = await repository.getDietLog();
+    return res;
+  }
+
+  Future<List<ExerciseLog>> getExerciseLogs() async {
+    final res = await repository.getExerciseLog();
+    return res;
+  }
 }

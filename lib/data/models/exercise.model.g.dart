@@ -57,9 +57,9 @@ Map<String, dynamic> _$ExerciseLogRequestToJson(ExerciseLogRequest instance) =>
 ExerciseLog _$ExerciseLogFromJson(Map<String, dynamic> json) {
   return ExerciseLog(
     json['exerciseName'] as String?,
-    json['reps'] as String?,
+    json['reps'] as int?,
     json['time'] == null ? null : DateTime.parse(json['time'] as String),
-    json['totalCaloriesBurn'] as String?,
+    json['totalCaloriesBurn'] as int?,
   );
 }
 
