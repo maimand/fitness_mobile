@@ -48,8 +48,8 @@ Map<String, dynamic> _$FoodToJson(Food instance) => <String, dynamic>{
       'fiber': instance.fiber,
     };
 
-FoodLog _$FoodLogFromJson(Map<String, dynamic> json) {
-  return FoodLog(
+FoodLogRequest _$FoodLogRequestFromJson(Map<String, dynamic> json) {
+  return FoodLogRequest(
     json['foodId'] as String,
     json['foodName'] as String,
     json['number'] as int,
@@ -57,9 +57,28 @@ FoodLog _$FoodLogFromJson(Map<String, dynamic> json) {
   );
 }
 
+Map<String, dynamic> _$FoodLogRequestToJson(FoodLogRequest instance) =>
+    <String, dynamic>{
+      'foodId': instance.foodId,
+      'foodName': instance.foodName,
+      'number': instance.number,
+      'totalCaloriesIntake': instance.totalCaloriesIntake,
+    };
+
+FoodLog _$FoodLogFromJson(Map<String, dynamic> json) {
+  return FoodLog(
+    json['foodId'] as String?,
+    json['foodName'] as String?,
+    json['time'] == null ? null : DateTime.parse(json['time'] as String),
+    json['number'] as int?,
+    json['totalCaloriesIntake'] as int?,
+  );
+}
+
 Map<String, dynamic> _$FoodLogToJson(FoodLog instance) => <String, dynamic>{
       'foodId': instance.foodId,
       'foodName': instance.foodName,
+      'time': instance.time?.toIso8601String(),
       'number': instance.number,
       'totalCaloriesIntake': instance.totalCaloriesIntake,
     };

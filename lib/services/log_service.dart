@@ -7,7 +7,7 @@ class LogService extends GetxService {
 
   LogService(this.repository);
 
-  void logFood(FoodLog log) {
+  void logFood(FoodLogRequest log) {
     repository.postFoodLog(log: log);
   }
 }

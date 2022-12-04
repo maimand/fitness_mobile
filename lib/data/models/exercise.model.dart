@@ -12,7 +12,6 @@ class ExerciseModel {
       _$ExerciseModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ExerciseModelToJson(this);
-
 }
 
 @JsonSerializable()
@@ -30,10 +29,37 @@ class ExerciseDetailModel {
       this.instructions,
       this.caloriesBurn});
 
-
   factory ExerciseDetailModel.fromJson(Map<String, dynamic> json) =>
       _$ExerciseDetailModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ExerciseDetailModelToJson(this);
+}
 
+@JsonSerializable()
+class ExerciseLogRequest {
+  final String exerciseName;
+  final String reps;
+  final String totalCaloriesBurn;
+
+  ExerciseLogRequest(this.exerciseName, this.reps, this.totalCaloriesBurn);
+
+  factory ExerciseLogRequest.fromJson(Map<String, dynamic> json) =>
+      _$ExerciseLogRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ExerciseLogRequestToJson(this);
+}
+
+@JsonSerializable()
+class ExerciseLog {
+  final String? exerciseName;
+  final String? reps;
+  final DateTime? time;
+  final String? totalCaloriesBurn;
+
+  ExerciseLog(this.exerciseName, this.reps, this.time, this.totalCaloriesBurn);
+
+  factory ExerciseLog.fromJson(Map<String, dynamic> json) =>
+      _$ExerciseLogFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ExerciseLogToJson(this);
 }

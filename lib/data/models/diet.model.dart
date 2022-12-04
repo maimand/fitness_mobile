@@ -37,20 +37,37 @@ class Food {
       this.carb,
       this.fiber});
 
-  factory Food.fromJson(Map<String, dynamic> json) =>
-      _$FoodFromJson(json);
+  factory Food.fromJson(Map<String, dynamic> json) => _$FoodFromJson(json);
 
   Map<String, dynamic> toJson() => _$FoodToJson(this);
 }
 
 @JsonSerializable()
-class FoodLog {
+class FoodLogRequest {
   final String foodId;
   final String foodName;
   final int number;
   final int totalCaloriesIntake;
 
-  FoodLog(this.foodId, this.foodName, this.number, this.totalCaloriesIntake);
+  FoodLogRequest(
+      this.foodId, this.foodName, this.number, this.totalCaloriesIntake);
+
+  factory FoodLogRequest.fromJson(Map<String, dynamic> json) =>
+      _$FoodLogRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$FoodLogRequestToJson(this);
+}
+
+@JsonSerializable()
+class FoodLog {
+  final String? foodId;
+  final String? foodName;
+  final DateTime? time;
+  final int? number;
+  final int? totalCaloriesIntake;
+
+  FoodLog(this.foodId, this.foodName, this.time, this.number,
+      this.totalCaloriesIntake);
 
   factory FoodLog.fromJson(Map<String, dynamic> json) =>
       _$FoodLogFromJson(json);

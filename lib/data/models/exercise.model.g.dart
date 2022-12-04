@@ -38,3 +38,35 @@ Map<String, dynamic> _$ExerciseDetailModelToJson(
       'instructions': instance.instructions,
       'caloriesBurn': instance.caloriesBurn,
     };
+
+ExerciseLogRequest _$ExerciseLogRequestFromJson(Map<String, dynamic> json) {
+  return ExerciseLogRequest(
+    json['exerciseName'] as String,
+    json['reps'] as String,
+    json['totalCaloriesBurn'] as String,
+  );
+}
+
+Map<String, dynamic> _$ExerciseLogRequestToJson(ExerciseLogRequest instance) =>
+    <String, dynamic>{
+      'exerciseName': instance.exerciseName,
+      'reps': instance.reps,
+      'totalCaloriesBurn': instance.totalCaloriesBurn,
+    };
+
+ExerciseLog _$ExerciseLogFromJson(Map<String, dynamic> json) {
+  return ExerciseLog(
+    json['exerciseName'] as String?,
+    json['reps'] as String?,
+    json['time'] == null ? null : DateTime.parse(json['time'] as String),
+    json['totalCaloriesBurn'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ExerciseLogToJson(ExerciseLog instance) =>
+    <String, dynamic>{
+      'exerciseName': instance.exerciseName,
+      'reps': instance.reps,
+      'time': instance.time?.toIso8601String(),
+      'totalCaloriesBurn': instance.totalCaloriesBurn,
+    };
