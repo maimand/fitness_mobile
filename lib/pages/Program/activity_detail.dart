@@ -184,12 +184,7 @@ class ActivityDetail extends StatelessWidget {
           ),
         ),
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) {
-              return const ActivityTimer();
-            }),
-          );
+          Get.to(() => const ActivityTimer());
         },
       ),
     );

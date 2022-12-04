@@ -21,7 +21,6 @@ class ExerciseDetailController extends GetxController {
 
   Future<void> getExercise(String exerciseName) async {
     try {
-
       final res = await repository.getExerciseDetailByName(name: exerciseName);
       exercise.value = res;
       videoId = YoutubePlayer.convertUrlToId(exercise.value?.videoUrl ?? '');

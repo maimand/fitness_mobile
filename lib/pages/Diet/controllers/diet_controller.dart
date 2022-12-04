@@ -68,10 +68,8 @@ class DietController extends GetxController {
   }
 
   void logFood(Food food) {
-    final log =
-        FoodLogRequest(food.id ?? '', food.name ?? '', 1, food.calo?.toInt() ?? 0);
     try {
-      logService.logFood(log);
+      logService.logFood(food);
       Get.snackbar('Success', 'Added to your diet today');
 
     } on Exception catch (e) {

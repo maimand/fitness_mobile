@@ -42,8 +42,8 @@ Map<String, dynamic> _$ExerciseDetailModelToJson(
 ExerciseLogRequest _$ExerciseLogRequestFromJson(Map<String, dynamic> json) {
   return ExerciseLogRequest(
     json['exerciseName'] as String,
-    json['reps'] as String,
-    json['totalCaloriesBurn'] as String,
+    json['reps'] as int,
+    json['totalCaloriesBurn'] as int,
   );
 }
 

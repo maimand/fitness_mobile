@@ -8,7 +8,7 @@ class LogProvider {
 
   LogProvider(this.networkService);
 
-  final String exerciseLogUrl = '$baseUrl/logs/exercise-logs';
+  final String exerciseLogUrl = '$baseUrl/logs/exercises-logs';
   final String dietLogUrl = '$baseUrl/logs/food-logs';
 
   Future<HttpResponse> getDietLogs(

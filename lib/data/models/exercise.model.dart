@@ -38,8 +38,8 @@ class ExerciseDetailModel {
 @JsonSerializable()
 class ExerciseLogRequest {
   final String exerciseName;
-  final String reps;
-  final String totalCaloriesBurn;
+  final int reps;
+  final int totalCaloriesBurn;
 
   ExerciseLogRequest(this.exerciseName, this.reps, this.totalCaloriesBurn);
 

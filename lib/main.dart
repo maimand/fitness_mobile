@@ -25,7 +25,8 @@ void main() {
   Get.put(DietRepository(Get.find<DietProvider>()));
   Get.put(LogRepository(Get.find<LogProvider>()));
   Get.put(AuthService(Get.find<AuthRepository>()));
-  Get.put(LogService(Get.find<LogRepository>()));
+  Get.put(
+      LogService(Get.find<LogRepository>(), Get.find<ExerciseRepository>()));
   runApp(const MyApp());
 }
 
