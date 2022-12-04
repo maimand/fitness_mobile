@@ -1,5 +1,6 @@
 import 'package:fitness_mobile/data/models/diet.model.dart';
 import 'package:fitness_mobile/data/repositories/diet_repository.dart';
+import 'package:fitness_mobile/pages/Diet/DietDetail.dart';
 import 'package:fitness_mobile/services/log_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -87,7 +88,8 @@ class DietController extends GetxController {
       return;
     }
     try {
-      repository.predictFood(pickedFile.path);
+      final res = await repository.predictFood(pickedFile.path);
+      Get.to(() => DietDetailView(food: res,));
     } on Exception catch (e) {
       Get.snackbar('Predict Food Failed', e.toString());
     }
@@ -103,7 +105,8 @@ class DietController extends GetxController {
       return;
     }
     try {
-      repository.predictFood(pickedFile.path);
+      final res = await repository.predictFood(pickedFile.path);
+      Get.to(() => DietDetailView(food: res,));
     } on Exception catch (e) {
       Get.snackbar('Predict Food Failed', e.toString());
     }

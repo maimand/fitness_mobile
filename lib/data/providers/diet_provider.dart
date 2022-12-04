@@ -9,6 +9,7 @@ class DietProvider {
 
   final String getDietUrl = '$baseUrl/diet';
   final String postFoodUrl = '$baseUrl/diet';
+  final String predictFoodUrl = '$foodUrl/food-predict';
 
   Future<HttpResponse> getDiet(
       {String? food, required int page, required int size}) {
@@ -21,7 +22,8 @@ class DietProvider {
   }
 
   Future<HttpResponse> predictFood({required String path}) async {
-    return networkService.post(postFoodUrl,
+    return networkService.post(predictFoodUrl,
+        options: Options(headers: {'X-Api-Key': '123456'}),
         formData: {'file': await MultipartFile.fromFile(path)});
   }
 }

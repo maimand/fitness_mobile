@@ -15,13 +15,21 @@ class DietRepository {
 
   Future<Food> getFoodByName({required String name}) async {
     final response = await provider.getFoodDetailByName(name: name);
+    if(response.body['data'] == null) {
+      throw 'No food found';
+    }
     final result = Food.fromJson(response.body['data']);
     return result;
   }
 
   Future<Food> predictFood(String path) async {
-    final res = await provider.predictFood(path: path);
-    final String name = res.body['predict'];
-    return getFoodByName(name: name);
+    try {
+      final res = await provider.predictFood(path: path);
+      final String name = res.body['res'];
+      final r =  await getFoodByName(name: name.trim());
+      return r;
+    } on Exception {
+      rethrow ;
+    }
   }
 }
