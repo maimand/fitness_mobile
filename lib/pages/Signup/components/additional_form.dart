@@ -1,14 +1,16 @@
 import 'package:fitness_mobile/constants/constants.dart';
 import 'package:fitness_mobile/data/models/user.model.dart';
 import 'package:fitness_mobile/pages/Signup/controllers/calculate_fat_controller.dart';
-import 'package:fitness_mobile/tabs/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 
 class SignUpAdditionalForm extends StatelessWidget {
+
+  final Function(double) onFinish;
+  final Function onSkip;
   SignUpAdditionalForm({
-    Key? key,
+    Key? key, required this.onFinish, required this.onSkip,
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -39,10 +41,7 @@ class SignUpAdditionalForm extends StatelessWidget {
         double.tryParse(heightController.text) ?? 0,
         sexController.text,
       );
-      final res = await controller.onPredictFat(request);
-      if (res) {
-        Get.to(() => const HomeView());
-      }
+      await controller.onPredictFat(request, onFinish);
     }
 
     return Form(
@@ -203,7 +202,7 @@ class SignUpAdditionalForm extends StatelessWidget {
           const SizedBox(height: defaultPadding),
           ElevatedButton(
             onPressed: () {
-              Get.offAll(() => const HomeView());
+              onSkip();
             },
             child: Text("Skip".toUpperCase()),
           ),

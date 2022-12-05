@@ -7,7 +7,8 @@ class CalculateFatController extends GetxController {
 
   CalculateFatController(this.authRepository);
 
-  Future<bool> onPredictFat(UserInfoAdvancePredictRequest request) async {
+  Future<bool> onPredictFat(
+      UserInfoAdvancePredictRequest request, Function(double) onCallback) async {
     try {
       final fat = await authRepository.predictFat(request);
       if (fat == null) {
@@ -20,6 +21,7 @@ class CalculateFatController extends GetxController {
           height: request.height,
           weight: request.weight);
       await authRepository.updateUser(updateRequest);
+      onCallback(fat);
       return true;
     } on Exception catch (e) {
       Get.snackbar('Predict Failed', e.toString());
