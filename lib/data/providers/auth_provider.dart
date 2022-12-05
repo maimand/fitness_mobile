@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:fitness_mobile/constants/api_constants.dart';
+import 'package:fitness_mobile/data/models/user.model.dart';
 import 'package:fitness_mobile/services/network_service.dart';
 
 class AuthProvider {
@@ -6,14 +8,12 @@ class AuthProvider {
 
   AuthProvider(this.networkService);
 
-  final String loginUrl =
-      '$baseUrl/user/login';
-  final String registerUrl =
-      '$baseUrl/auth/register';
-  final String forgotUrl =
-      '$baseUrl/auth/forgot';
-  final String reset = '$baseUrl/auth/reset';
+  final String loginUrl = '$baseUrl/user/login';
+  final String registerUrl = '$baseUrl/user/new';
   final String userInfoUrl = '$baseUrl/user/get-info';
+  final String updateUserInfoUrl = '$baseUrl/user/update';
+
+  final String predictUrl = '$predictFatUrl/advanced-fat-predict';
 
   Future<HttpResponse> login(String username, String password) {
     return networkService
@@ -25,17 +25,28 @@ class AuthProvider {
   }
 
   Future<HttpResponse> register(
-      String username, String password, String firstName, String lastName) {
+      {required String fullname,
+      required String password,
+      required String email,
+      required String code}) {
     return networkService.post(registerUrl, data: {
-      "email": username,
+      "fullname": fullname,
       "password": password,
-      "firstName": firstName,
-      "lastName": lastName
+      "email": email,
+      "code": code
     });
   }
 
-  Future<HttpResponse> forgotPassword(String email) {
-    return networkService.post(forgotUrl, data: {"email": email});
+  Future<HttpResponse> updateUser(UpdateUserRequest request) {
+    return networkService.put(updateUserInfoUrl, data: request.toJson());
+  }
+
+  Future<HttpResponse> predictFat(UserInfoAdvancePredictRequest request) {
+    return networkService.get(
+      predictUrl,
+      queryParameters: request.toJson(),
+      options: Options(headers: {'X-Api-Key': '123456'}),
+    );
   }
 
   // Future<HttpResponse> resetPassword(String password) {

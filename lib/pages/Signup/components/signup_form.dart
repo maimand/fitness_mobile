@@ -16,6 +16,8 @@ class SignUpForm extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController codeController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +25,43 @@ class SignUpForm extends StatelessWidget {
       key: formKey,
       child: Column(
         children: [
-          TextFormField(
-            controller: usernameController,
-            keyboardType: TextInputType.emailAddress,
-            textInputAction: TextInputAction.next,
-            cursorColor: kPrimaryColor,
-            onSaved: (email) {},
-            validator: MultiValidator(
-                [RequiredValidator(errorText: 'Please enter email')]),
-            decoration: const InputDecoration(
-              hintText: "Your email",
-              prefixIcon: Padding(
-                padding: EdgeInsets.all(defaultPadding),
-                child: Icon(Icons.person),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+            child: TextFormField(
+              controller: usernameController,
+              keyboardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
+              cursorColor: kPrimaryColor,
+              onSaved: (email) {},
+              validator: MultiValidator(
+                  [RequiredValidator(errorText: 'Please enter name')]),
+              decoration: const InputDecoration(
+                hintText: "Your name",
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(defaultPadding),
+                  child: Icon(Icons.person),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+            child: TextFormField(
+              controller: emailController,
+              keyboardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
+              cursorColor: kPrimaryColor,
+              onSaved: (email) {},
+              validator: MultiValidator([
+                RequiredValidator(errorText: 'Please enter email'),
+                EmailValidator(errorText: 'Please enter correct email')
+              ]),
+              decoration: const InputDecoration(
+                hintText: "Your email",
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(defaultPadding),
+                  child: Icon(Icons.email),
+                ),
               ),
             ),
           ),
@@ -79,6 +105,7 @@ class SignUpForm extends StatelessWidget {
               if (formKey.currentState!.validate()) {
                 Get.find<AuthService>().onRegister(
                     username: usernameController.text.trim(),
+                    email: emailController.text.trim(),
                     password: passwordController.text.trim(),
                     code: codeController.text.trim());
               }

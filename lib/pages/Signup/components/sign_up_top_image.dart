@@ -1,6 +1,5 @@
 import 'package:fitness_mobile/constants/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 
 class SignUpScreenTopImage extends StatelessWidget {
@@ -15,17 +14,6 @@ class SignUpScreenTopImage extends StatelessWidget {
         Text(
           "Sign Up".toUpperCase(),
           style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: defaultPadding),
-        Row(
-          children: [
-            const Spacer(),
-            Expanded(
-              flex: 8,
-              child: SvgPicture.asset("assets/icons/signup.svg"),
-            ),
-            const Spacer(),
-          ],
         ),
         const SizedBox(height: defaultPadding),
       ],

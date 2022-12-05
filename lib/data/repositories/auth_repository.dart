@@ -1,4 +1,3 @@
-
 import 'package:fitness_mobile/data/models/user.model.dart';
 import 'package:fitness_mobile/data/providers/auth_provider.dart';
 
@@ -17,6 +16,24 @@ class AuthRepository {
     final response = await provider.getUserInfo();
     final result = UserModel.fromJson(response.body);
     return result;
+  }
+
+  Future<void> register(
+      {required String fullname,
+      required String password,
+      required String email,
+      required String code}) async {
+    await provider.register(
+        fullname: fullname, password: password, email: email, code: code);
+  }
+
+  Future<double?> predictFat(UserInfoAdvancePredictRequest request) async {
+    final res = await provider.predictFat(request);
+    return res.body['res'];
+  }
+
+  Future<void> updateUser(UpdateUserRequest request) {
+    return provider.updateUser(request);
   }
 
   // Future<void> register(String username, String password, String firstName,
