@@ -11,6 +11,7 @@ import 'package:fitness_mobile/services/auth_service.dart';
 import 'package:fitness_mobile/services/log_service.dart';
 import 'package:fitness_mobile/services/network_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: const WelcomeScreen(),
+        builder: EasyLoading.init(),
       ),
     );
   }
