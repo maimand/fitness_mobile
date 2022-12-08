@@ -1,3 +1,4 @@
+import 'package:fitness_mobile/constants/api_constants.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'exercise.model.g.dart';
 
@@ -62,4 +63,18 @@ class ExerciseLog {
       _$ExerciseLogFromJson(json);
 
   Map<String, dynamic> toJson() => _$ExerciseLogToJson(this);
+}
+
+
+@JsonSerializable()
+class BodyLog {
+  final String? image;
+  final DateTime? time;
+
+  BodyLog(this.image, this.time);
+
+  factory BodyLog.fromJson(Map<String, dynamic> json) =>
+      _$BodyLogFromJson(json);
+
+  Map<String, dynamic> toJson() => _$BodyLogToJson(this);
 }

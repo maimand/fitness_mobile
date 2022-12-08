@@ -3,6 +3,7 @@ import 'package:fitness_mobile/data/repositories/auth_repository.dart';
 import 'package:fitness_mobile/pages/Login/login_screen.dart';
 import 'package:fitness_mobile/pages/Signup/sign_up_additional_info.dart';
 import 'package:fitness_mobile/tabs/home_view.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,6 +22,7 @@ class AuthService extends GetxService {
 
   void onLogin(String username, String password) async {
     try {
+      EasyLoading.show();
       final res = await authRepository.login(username, password);
       final prefs = await SharedPreferences.getInstance();
       prefs.setString('accessToken', res.accessToken!);
@@ -31,9 +33,11 @@ class AuthService extends GetxService {
         e.toString(),
       );
     }
+    EasyLoading.dismiss();
   }
 
   Future<void> getUserInformation() async {
+    EasyLoading.show();
     try {
       final res = await authRepository.getUserInfo();
       userModel.value = res;
@@ -45,6 +49,8 @@ class AuthService extends GetxService {
     } on Exception catch (e) {
       Get.snackbar('Get User Info Error', e.toString());
     }
+    EasyLoading.dismiss();
+
   }
 
   void onRegister(
@@ -53,12 +59,16 @@ class AuthService extends GetxService {
       required String email,
       required String code}) async {
     try {
+      EasyLoading.show();
+
       await authRepository.register(
           fullname: username, password: password, email: email, code: code);
       Get.offAll(() => const SignUpAdditionalInfoScreen());
     } on Exception catch (e) {
       Get.snackbar('Register failed', e.toString());
     }
+    EasyLoading.dismiss();
+
   }
 
   void logout() async {

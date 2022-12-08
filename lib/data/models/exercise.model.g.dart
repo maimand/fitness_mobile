@@ -70,3 +70,15 @@ Map<String, dynamic> _$ExerciseLogToJson(ExerciseLog instance) =>
       'time': instance.time?.toIso8601String(),
       'totalCaloriesBurn': instance.totalCaloriesBurn,
     };
+
+BodyLog _$BodyLogFromJson(Map<String, dynamic> json) {
+  return BodyLog(
+    json['image'] as String?,
+    json['time'] == null ? null : DateTime.parse(json['time'] as String),
+  );
+}
+
+Map<String, dynamic> _$BodyLogToJson(BodyLog instance) => <String, dynamic>{
+      'image': instance.image,
+      'time': instance.time?.toIso8601String(),
+    };

@@ -14,7 +14,8 @@ class Results extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    final controller = Get.put(ResultController(Get.find<LogService>()));
+    final controller =
+        Get.put(ResultController(Get.find<LogService>(), Get.find()));
     controller.getLogs();
     return Obx(
       () => controller.isLoading.value
@@ -129,46 +130,72 @@ class Results extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Container(
-                              padding: const EdgeInsets.all(25.0),
-                              width: width - 40.0,
-                              decoration: BoxDecoration(
-                                color: const Color.fromRGBO(241, 227, 255, 1.0),
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              child: const Text(
-                                'Enter today\'s weight',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color.fromRGBO(190, 130, 255, 1.0),
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                            ),
                             const SizedBox(height: 12),
-                            Container(
-                              padding: const EdgeInsets.all(20.0),
-                              decoration: BoxDecoration(
-                                color: const Color.fromRGBO(241, 227, 255, 1.0),
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: const <Widget>[
-                                  Text(
-                                    'Body Progress',
-                                    style: TextStyle(
-                                      color: Color.fromRGBO(190, 130, 255, 1.0),
-                                      fontSize: 18.0,
+                            InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(30),
+                                          topRight: Radius.circular(30))),
+                                  context: context,
+                                  builder: (BuildContext buildContext) {
+                                    return Row(
+                                      children: [
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(16),
+                                            child: TextButton(
+                                              child: const Text('Gallery'),
+                                              onPressed: () async {
+                                                Navigator.pop(context);
+                                                controller.searchWithGallery();
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(16),
+                                            child: TextButton(
+                                              child: const Text('Camera'),
+                                              onPressed: () async {
+                                                Navigator.pop(context);
+                                                controller.searchWithCamera();
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(20.0),
+                                decoration: BoxDecoration(
+                                  color:
+                                      const Color.fromRGBO(241, 227, 255, 1.0),
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: const <Widget>[
+                                    Text(
+                                      'Body Progress',
+                                      style: TextStyle(
+                                        color:
+                                            Color.fromRGBO(190, 130, 255, 1.0),
+                                        fontSize: 18.0,
+                                      ),
                                     ),
-                                  ),
-                                  Icon(
-                                    Icons.camera_alt,
-                                    color: Color.fromRGBO(190, 130, 255, 1.0),
-                                  ),
-                                ],
+                                    Icon(
+                                      Icons.camera_alt,
+                                      color: Color.fromRGBO(190, 130, 255, 1.0),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],

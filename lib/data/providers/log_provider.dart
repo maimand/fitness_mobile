@@ -10,6 +10,7 @@ class LogProvider {
 
   final String exerciseLogUrl = '$baseUrl/logs/exercises-logs';
   final String dietLogUrl = '$baseUrl/logs/food-logs';
+  final String bodyLogUrl = '$baseUrl/logs/body-logs';
 
   Future<HttpResponse> getDietLogs(
       {int page = 1, int size = 20}) {
@@ -27,13 +28,24 @@ class LogProvider {
     // queryParameters: {"page": page , "size": size});
   }
 
+  Future<HttpResponse> getBodyLogs(
+      {int page = 1, int size = 20}) {
+    return networkService.get(
+      bodyLogUrl,
+    );
+    // queryParameters: {"page": page , "size": size});
+  }
+
   Future<HttpResponse> postDietLog({required FoodLogRequest log}) {
     return networkService.post(dietLogUrl, data: log.toJson());
   }
 
   Future<HttpResponse> postExerciseLog({required ExerciseLogRequest log}) {
     return networkService.post(exerciseLogUrl, data: log.toJson());
-    // queryParameters: {"page": page , "size": size});
+  }
+
+  Future<HttpResponse> postBodyLog({required String image}) {
+    return networkService.post(bodyLogUrl, data: {'image': image});
   }
 
   // Future<HttpResponse> getFoodDetailByName({required String name}) {

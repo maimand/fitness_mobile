@@ -30,4 +30,16 @@ class LogRepository {
         .toList();
     return result;
   }
+
+  Future<void> postBodyLog(String image) async {
+    await provider.postBodyLog(image: image);
+  }
+
+  Future<List<BodyLog>> getBodyLogs() async {
+    final response = await provider.getBodyLogs();
+    final result = (response.body['data'] as List)
+        .map((e) => BodyLog.fromJson(e))
+        .toList();
+    return result;
+  }
 }

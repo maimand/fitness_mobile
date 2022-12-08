@@ -101,7 +101,7 @@ UserInfoAdvancePredictRequest _$UserInfoAdvancePredictRequestFromJson(
     (json['thingh'] as num).toDouble(),
     (json['weight'] as num).toDouble(),
     (json['height'] as num).toDouble(),
-    (json['sex'] as String),
+    json['sex'] as String,
   );
 }
 

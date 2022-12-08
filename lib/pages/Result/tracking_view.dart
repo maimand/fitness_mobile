@@ -1,3 +1,4 @@
+import 'package:fitness_mobile/pages/Result/widgets/body_log_list.dart';
 import 'package:fitness_mobile/pages/Result/widgets/exercise_log_list.dart';
 import 'package:fitness_mobile/pages/Result/widgets/food_log_list.dart';
 import 'package:flutter/material.dart';
@@ -32,11 +33,7 @@ class TrackingView extends StatelessWidget {
             children: <Widget>[
               ExerciseLogList(),
               DietLogList(),
-              Center(
-                child: Text(
-                  'Body',
-                ),
-              ),
+              BodyLogList(),
             ],
           ),
         ),
