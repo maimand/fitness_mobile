@@ -122,7 +122,7 @@ class Results extends StatelessWidget {
                                 horizontal: 30.0,
                               ),
                               child: const Text(
-                                'Track your weight every morning before your breakfast',
+                                'Track your body everyday to see the progress',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 18.0,

@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
         title: 'fitness_mobile Trainer',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.red,
         ),
         home: const WelcomeScreen(),
         builder: EasyLoading.init(),

@@ -138,10 +138,7 @@ class _NewsWebViewState extends State<NewsWebView> {
                 onProgress: _onProgress,
               ),
               if (_isLoading)
-               const SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  // color: colors.neutral1,
+               const Center(
                   child: CircularProgressIndicator(),
                 ),
             ],

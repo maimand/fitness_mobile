@@ -1,5 +1,6 @@
 import 'package:fitness_mobile/data/models/exercise.model.dart';
 import 'package:fitness_mobile/data/repositories/exercise_repository.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
 class ProgramController extends GetxController {
@@ -17,10 +18,13 @@ class ProgramController extends GetxController {
 
   Future<void> getExercise(String part) async {
     try {
+      EasyLoading.show();
       final res = await repository.getExercisesByBodyPart(name: part);
       exercises.assignAll(res);
     } on Exception catch (e) {
       Get.snackbar('Get Exercise Failed', e.toString());
     }
+    EasyLoading.dismiss();
+
   }
 }
