@@ -22,12 +22,12 @@ class DietDetailView extends StatelessWidget {
             Container(
               width: Get.width,
               height: 160.0,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(
                   Radius.circular(20.0),
                 ),
                 image: DecorationImage(
-                  image: AssetImage('assets/images/image012.jpg'),
+                  image: NetworkImage(food.image!),
                   fit: BoxFit.cover,
                 ),
               ),

@@ -21,6 +21,7 @@ class Food {
   final String? id;
   final String? name;
   final String? ration;
+  final String? image;
   final double? calo;
   final double? protein;
   final double? fat;
@@ -31,6 +32,7 @@ class Food {
       {this.id,
       this.name,
       this.ration,
+      this.image,
       this.calo,
       this.protein,
       this.fat,

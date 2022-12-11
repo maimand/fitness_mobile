@@ -29,6 +29,7 @@ Food _$FoodFromJson(Map<String, dynamic> json) {
     id: json['id'] as String?,
     name: json['name'] as String?,
     ration: json['ration'] as String?,
+    image: json['image'] as String?,
     calo: (json['calo'] as num?)?.toDouble(),
     protein: (json['protein'] as num?)?.toDouble(),
     fat: (json['fat'] as num?)?.toDouble(),
