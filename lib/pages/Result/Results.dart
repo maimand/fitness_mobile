@@ -17,195 +17,207 @@ class Results extends StatelessWidget {
     final controller =
         Get.put(ResultController(Get.find<LogService>(), Get.find()));
     controller.getLogs();
-    return Obx(
-      () => controller.isLoading.value
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: SafeArea(
-                  child: Column(
-                    children: <Widget>[
-                      Header(
-                        'Results',
-                        rightSide: TextButton(
-                            onPressed: () {
-                              Get.to(() => const TrackingView());
-                            },
-                            child: const Text('Your trackings')),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 25.0,
-                          horizontal: 20.0,
+    return Scaffold(
+      body: Obx(
+        () => SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                const SizedBox(height: 20),
+                Header(
+                  'Results',
+                  rightSide: TextButton(
+                      onPressed: () {
+                        Get.to(() => const TrackingView());
+                      },
+                      child: const Text('Your trackings')),
+                ),
+                controller.isLoading.value
+                    ? SizedBox(
+                        height: Get.height * 0.8,
+                        child: const Center(
+                          child: CircularProgressIndicator(),
                         ),
-                        width: width,
-                        decoration: const BoxDecoration(
-                          color: Color.fromRGBO(231, 241, 248, 1.0),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            const LogChart(),
-                            Text(
-                              'You\'ve burned',
-                              style: TextStyle(
-                                color: Colors.grey[400],
-                              ),
+                      )
+                    : Column(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 25.0,
+                              horizontal: 20.0,
                             ),
-                            Text(
-                              '${controller.todayCaloriesBurned} kCal',
-                              style: TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.grey[500],
-                              ),
+                            width: width,
+                            decoration: const BoxDecoration(
+                              color: Color.fromRGBO(231, 241, 248, 1.0),
                             ),
-                            RoundedProgressBar(
-                              height: 25.0,
-                              style: RoundedProgressBarStyle(
-                                borderWidth: 0,
-                                widthShadow: 0,
-                              ),
-                              margin: const EdgeInsets.only(
-                                top: 10.0,
-                                bottom: 16.0,
-                              ),
-                              borderRadius: BorderRadius.circular(24),
-                              percent: 28.0,
-                            ),
-                            Text(
-                              'You\'ve eaten',
-                              style: TextStyle(
-                                color: Colors.grey[400],
-                              ),
-                            ),
-                            Text(
-                              '${controller.todayCaloriesTaken} kCal',
-                              style: TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.grey[500],
-                              ),
-                            ),
-                            RoundedProgressBar(
-                              height: 25.0,
-                              style: RoundedProgressBarStyle(
-                                borderWidth: 0,
-                                widthShadow: 0,
-                              ),
-                              margin: const EdgeInsets.only(
-                                top: 10.0,
-                                bottom: 16.0,
-                              ),
-                              borderRadius: BorderRadius.circular(24),
-                              percent: 28.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(
-                          top: 12.0,
-                          left: 20.0,
-                          right: 20.0,
-                        ),
-                        width: MediaQuery.of(context).size.width,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 20.0,
-                                horizontal: 30.0,
-                              ),
-                              child: const Text(
-                                'Track your body everyday to see the progress',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Colors.blueGrey,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                const LogChart(),
+                                Text(
+                                  'You\'ve burned',
+                                  style: TextStyle(
+                                    color: Colors.grey[400],
+                                  ),
                                 ),
-                              ),
+                                Text(
+                                  '${controller.todayCaloriesBurned} kCal',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.grey[500],
+                                  ),
+                                ),
+                                RoundedProgressBar(
+                                  height: 25.0,
+                                  style: RoundedProgressBarStyle(
+                                    borderWidth: 0,
+                                    widthShadow: 0,
+                                  ),
+                                  margin: const EdgeInsets.only(
+                                    top: 10.0,
+                                    bottom: 16.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(24),
+                                  percent: 28.0,
+                                ),
+                                Text(
+                                  'You\'ve eaten',
+                                  style: TextStyle(
+                                    color: Colors.grey[400],
+                                  ),
+                                ),
+                                Text(
+                                  '${controller.todayCaloriesTaken} kCal',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.grey[500],
+                                  ),
+                                ),
+                                RoundedProgressBar(
+                                  height: 25.0,
+                                  style: RoundedProgressBarStyle(
+                                    borderWidth: 0,
+                                    widthShadow: 0,
+                                  ),
+                                  margin: const EdgeInsets.only(
+                                    top: 10.0,
+                                    bottom: 16.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(24),
+                                  percent: 28.0,
+                                ),
+                              ],
                             ),
-                            const SizedBox(height: 12),
-                            InkWell(
-                              onTap: () {
-                                showModalBottomSheet(
-                                  shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(30),
-                                          topRight: Radius.circular(30))),
-                                  context: context,
-                                  builder: (BuildContext buildContext) {
-                                    return Row(
-                                      children: [
-                                        Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(16),
-                                            child: TextButton(
-                                              child: const Text('Gallery'),
-                                              onPressed: () async {
-                                                Navigator.pop(context);
-                                                controller.searchWithGallery();
-                                              },
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(
+                              top: 12.0,
+                              left: 20.0,
+                              right: 20.0,
+                            ),
+                            width: MediaQuery.of(context).size.width,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 20.0,
+                                    horizontal: 30.0,
+                                  ),
+                                  child: const Text(
+                                    'Track your body everyday to see the progress',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 18.0,
+                                      color: Colors.blueGrey,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                InkWell(
+                                  onTap: () {
+                                    showModalBottomSheet(
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(30),
+                                              topRight: Radius.circular(30))),
+                                      context: context,
+                                      builder: (BuildContext buildContext) {
+                                        return Row(
+                                          children: [
+                                            Expanded(
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(16),
+                                                child: TextButton(
+                                                  child: const Text('Gallery'),
+                                                  onPressed: () async {
+                                                    Navigator.pop(context);
+                                                    controller
+                                                        .searchWithGallery();
+                                                  },
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(16),
-                                            child: TextButton(
-                                              child: const Text('Camera'),
-                                              onPressed: () async {
-                                                Navigator.pop(context);
-                                                controller.searchWithCamera();
-                                              },
+                                            Expanded(
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(16),
+                                                child: TextButton(
+                                                  child: const Text('Camera'),
+                                                  onPressed: () async {
+                                                    Navigator.pop(context);
+                                                    controller
+                                                        .searchWithCamera();
+                                                  },
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                      ],
+                                          ],
+                                        );
+                                      },
                                     );
                                   },
-                                );
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.all(20.0),
-                                decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromRGBO(241, 227, 255, 1.0),
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const <Widget>[
-                                    Text(
-                                      'Body Progress',
-                                      style: TextStyle(
-                                        color:
-                                            Color.fromRGBO(190, 130, 255, 1.0),
-                                        fontSize: 18.0,
-                                      ),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(20.0),
+                                    decoration: BoxDecoration(
+                                      color: const Color.fromRGBO(
+                                          241, 227, 255, 1.0),
+                                      borderRadius: BorderRadius.circular(15.0),
                                     ),
-                                    Icon(
-                                      Icons.camera_alt,
-                                      color: Color.fromRGBO(190, 130, 255, 1.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: const <Widget>[
+                                        Text(
+                                          'Body Progress',
+                                          style: TextStyle(
+                                            color: Color.fromRGBO(
+                                                190, 130, 255, 1.0),
+                                            fontSize: 18.0,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.camera_alt,
+                                          color: Color.fromRGBO(
+                                              190, 130, 255, 1.0),
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
-                        ),
+                          )
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-              ),
+              ],
             ),
+          ),
+        ),
+      ),
     );
   }
 }
