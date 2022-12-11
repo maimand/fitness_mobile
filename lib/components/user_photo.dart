@@ -1,4 +1,5 @@
 import 'package:fitness_mobile/pages/User/user_view.dart';
+import 'package:fitness_mobile/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,12 +16,6 @@ class UserPhoto extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         margin: const EdgeInsets.only(right: 20.0),
         decoration: BoxDecoration(
-          image: const DecorationImage(
-            image: AssetImage(
-              'assets/images/image009.jpg',
-            ),
-            fit: BoxFit.fill,
-          ),
           borderRadius: const BorderRadius.all(
             Radius.circular(360),
           ),
@@ -35,6 +30,17 @@ class UserPhoto extends StatelessWidget {
           border: Border.all(
             color: Colors.white,
             width: 4.0,
+          ),
+        ),
+        child: CircleAvatar(
+          radius: 27,
+          backgroundColor: Colors.red,
+          child: Obx(
+            () => Text(
+              (Get.find<AuthService>().userModel.value?.fullname ?? ' ')[0]
+                  .toUpperCase(),
+              style: const TextStyle(fontSize: 20, color: Colors.white),
+            ),
           ),
         ),
       ),

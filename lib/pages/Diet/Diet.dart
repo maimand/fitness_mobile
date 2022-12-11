@@ -106,24 +106,28 @@ class Diet extends StatelessWidget {
             const SizedBox(height: 20),
             Obx(
               () => Expanded(
-                child: SmartRefresher(
-                  enablePullDown: true,
-                  enablePullUp: true,
-                  controller: controller.refreshController,
-                  onLoading: controller.onLoadMore,
-                  onRefresh: controller.onRefresh,
-                  header: const WaterDropHeader(),
-                  child: ListView.builder(
-                      controller: controller.scrollController,
-                      itemCount: controller.foods.length,
-                      itemBuilder: (_, index) => Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: FoodCard(
-                              food: controller.foods[index],
-                            ),
-                          )),
-                ),
+                child: controller.foods.isEmpty
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : SmartRefresher(
+                        enablePullDown: true,
+                        enablePullUp: true,
+                        controller: controller.refreshController,
+                        onLoading: controller.onLoadMore,
+                        onRefresh: controller.onRefresh,
+                        header: const WaterDropHeader(),
+                        child: ListView.builder(
+                            controller: controller.scrollController,
+                            itemCount: controller.foods.length,
+                            itemBuilder: (_, index) => Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0),
+                                  child: FoodCard(
+                                    food: controller.foods[index],
+                                  ),
+                                )),
+                      ),
               ),
             ),
           ],
@@ -132,5 +136,3 @@ class Diet extends StatelessWidget {
     );
   }
 }
-
-

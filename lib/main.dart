@@ -28,6 +28,11 @@ void main() {
   Get.put(AuthService(Get.find<AuthRepository>()));
   Get.put(
       LogService(Get.find<LogRepository>(), Get.find<ExerciseRepository>()));
+
+  EasyLoading.instance
+    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+    ..indicatorColor = Colors.red;
+
   runApp(const MyApp());
 }
 
