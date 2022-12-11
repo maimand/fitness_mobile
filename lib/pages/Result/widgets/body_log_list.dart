@@ -1,4 +1,3 @@
-import 'package:fitness_mobile/components/custom_network_image.dart';
 import 'package:fitness_mobile/data/models/exercise.model.dart';
 import 'package:fitness_mobile/pages/Result/controllers/result_controller.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,7 @@ class BodyLogList extends StatelessWidget {
       groupComparator: (value1, value2) => value2.compareTo(value1),
       itemComparator: (item1, item2) => (item1.time ?? DateTime.now())
           .compareTo((item2.time ?? DateTime.now())),
-      order: GroupedListOrder.DESC,
+      order: GroupedListOrder.ASC,
       useStickyGroupSeparators: true,
       groupSeparatorBuilder: (String value) => Padding(
         padding: const EdgeInsets.all(8.0),

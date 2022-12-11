@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:fitness_mobile/data/models/user.model.dart';
 import 'package:fitness_mobile/data/repositories/auth_repository.dart';
 import 'package:fitness_mobile/pages/Login/login_screen.dart';
@@ -16,7 +17,7 @@ class AuthService extends GetxService {
 
   @override
   void onInit() {
-    getUserInformation();
+    getUserInformation(init: true);
     super.onInit();
   }
 
@@ -27,16 +28,15 @@ class AuthService extends GetxService {
       final prefs = await SharedPreferences.getInstance();
       prefs.setString('accessToken', res.accessToken!);
       getUserInformation();
-    } on Exception catch (e) {
+    } on DioError {
       Get.snackbar(
-        'Login Error',
-        e.toString(),
+        'Login Error', 'Wrong email or password'
       );
     }
     EasyLoading.dismiss();
   }
 
-  Future<void> getUserInformation() async {
+  Future<void> getUserInformation({bool init = false}) async {
     EasyLoading.show();
     try {
       final res = await authRepository.getUserInfo();
@@ -46,8 +46,10 @@ class AuthService extends GetxService {
       } else {
         Get.offAll(() => const HomeView());
       }
-    } on Exception catch (e) {
-      Get.snackbar('Get User Info Error', e.toString());
+    } on Exception {
+      if(!init) {
+        Get.snackbar('Get User Info Error', 'System Error');
+      }
     }
     EasyLoading.dismiss();
   }
@@ -63,8 +65,8 @@ class AuthService extends GetxService {
       await authRepository.register(
           fullname: username, password: password, email: email, code: code);
       Get.offAll(() => const SignUpAdditionalInfoScreen());
-    } on Exception catch (e) {
-      Get.snackbar('Register failed', e.toString());
+    } on Exception {
+      Get.snackbar('Register failed', 'System Error');
     }
     EasyLoading.dismiss();
   }
@@ -75,8 +77,8 @@ class AuthService extends GetxService {
       await authRepository.resetPassword(oldPass, newPass);
       Get.snackbar('Successful', 'Update your password');
       Get.back();
-    } on Exception catch (e) {
-      Get.snackbar('Register failed', e.toString());
+    } on Exception {
+      Get.snackbar('Reset password failed', 'System Error');
     }
     EasyLoading.dismiss();
   }

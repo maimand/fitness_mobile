@@ -14,8 +14,8 @@ class Results extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    final controller =
-        Get.put(ResultController(Get.find<LogService>(), Get.find()));
+    final controller = Get.put(
+        ResultController(Get.find<LogService>(), Get.find(), Get.find()));
     controller.getLogs();
     return Scaffold(
       body: Obx(

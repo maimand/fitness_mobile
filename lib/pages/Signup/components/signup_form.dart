@@ -36,7 +36,7 @@ class SignUpForm extends StatelessWidget {
               validator: MultiValidator(
                   [RequiredValidator(errorText: 'Please enter name')]),
               decoration: const InputDecoration(
-                hintText: "Your name",
+                hintText: "Your name *",
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(defaultPadding),
                   child: Icon(Icons.person),
@@ -57,7 +57,7 @@ class SignUpForm extends StatelessWidget {
                 EmailValidator(errorText: 'Please enter correct email')
               ]),
               decoration: const InputDecoration(
-                hintText: "Your email",
+                hintText: "Your email *",
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(defaultPadding),
                   child: Icon(Icons.email),
@@ -75,7 +75,7 @@ class SignUpForm extends StatelessWidget {
               validator: MultiValidator(
                   [RequiredValidator(errorText: 'Please enter password')]),
               decoration: const InputDecoration(
-                hintText: "Your password",
+                hintText: "Your password *",
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(defaultPadding),
                   child: Icon(Icons.lock),

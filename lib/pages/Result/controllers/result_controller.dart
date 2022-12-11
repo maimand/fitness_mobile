@@ -1,6 +1,8 @@
+import 'package:fitness_mobile/constants/api_constants.dart';
 import 'package:fitness_mobile/data/models/diet.model.dart';
 import 'package:fitness_mobile/data/models/exercise.model.dart';
 import 'package:fitness_mobile/data/repositories/log_repository.dart';
+import 'package:fitness_mobile/data/repositories/upload_repository.dart';
 import 'package:fitness_mobile/services/log_service.dart';
 import 'package:fitness_mobile/utils/date_time.dart';
 import 'package:get/get.dart';
@@ -9,8 +11,10 @@ import 'package:image_picker/image_picker.dart';
 class ResultController extends GetxController {
   final LogService logService;
   final LogRepository logRepository;
+  final UploadFileRepository uploadFileRepository;
 
-  ResultController(this.logService, this.logRepository);
+  ResultController(
+      this.logService, this.logRepository, this.uploadFileRepository);
 
   RxList<FoodLog> foodLogs = <FoodLog>[].obs;
   RxList<ExerciseLog> exerciseLogs = <ExerciseLog>[].obs;
@@ -20,8 +24,8 @@ class ResultController extends GetxController {
 
   int get todayCaloriesBurned {
     int total = 0;
-    for(var log in exerciseLogs) {
-      if(isToday(log.time!)) {
+    for (var log in exerciseLogs) {
+      if (isToday(log.time!)) {
         total += log.totalCaloriesBurn ?? 0;
       }
     }
@@ -30,8 +34,8 @@ class ResultController extends GetxController {
 
   int get todayCaloriesTaken {
     int total = 0;
-    for(var log in foodLogs) {
-      if(isToday(log.time!)) {
+    for (var log in foodLogs) {
+      if (isToday(log.time!)) {
         total += log.totalCaloriesIntake ?? 0;
       }
     }
@@ -60,7 +64,19 @@ class ResultController extends GetxController {
     } finally {
       isLoading.value = false;
     }
+  }
 
+  void getBodyLog() async {
+    try {
+      List<Future> requests = [
+        logRepository.getBodyLogs(),
+      ];
+      final res = await Future.wait(requests);
+      bodyLogs.assignAll(res[0] as List<BodyLog>);
+      bodyLogs.refresh();
+    } on Exception catch (e) {
+      Get.snackbar('Get body log  Failed', e.toString());
+    }
   }
 
   void searchWithCamera() async {
@@ -69,11 +85,18 @@ class ResultController extends GetxController {
       imageQuality: 60,
     );
 
+    postFile(pickedFile);
+  }
+
+  void postFile(XFile? pickedFile) async {
     if (pickedFile == null) {
       return;
     }
     try {
-      await logRepository.postBodyLog(DateTime.now().toIso8601String());
+      final url = await uploadFileRepository.uploadFile(pickedFile.path);
+      await logRepository.postBodyLog(uploadUrl + url);
+      getBodyLog();
+
       Get.snackbar('Success', 'Add body log');
     } on Exception catch (e) {
       Get.snackbar('Predict Food Failed', e.toString());
@@ -85,15 +108,6 @@ class ResultController extends GetxController {
       source: ImageSource.gallery,
       imageQuality: 60,
     );
-
-    if (pickedFile == null) {
-      return;
-    }
-    try {
-      await logRepository.postBodyLog(DateTime.now().toIso8601String());
-      Get.snackbar('Success', 'Add body log');
-    } on Exception catch (e) {
-      Get.snackbar('Predict Food Failed', e.toString());
-    }
+    postFile(pickedFile);
   }
 }

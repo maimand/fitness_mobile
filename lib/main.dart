@@ -2,14 +2,16 @@ import 'package:fitness_mobile/data/providers/auth_provider.dart';
 import 'package:fitness_mobile/data/providers/diet_provider.dart';
 import 'package:fitness_mobile/data/providers/log_provider.dart';
 import 'package:fitness_mobile/data/providers/program_provider.dart';
+import 'package:fitness_mobile/data/providers/upload_provider.dart';
 import 'package:fitness_mobile/data/repositories/auth_repository.dart';
 import 'package:fitness_mobile/data/repositories/diet_repository.dart';
 import 'package:fitness_mobile/data/repositories/exercise_repository.dart';
 import 'package:fitness_mobile/data/repositories/log_repository.dart';
-import 'package:fitness_mobile/pages/Welcome/welcome_screen.dart';
+import 'package:fitness_mobile/data/repositories/upload_repository.dart';
 import 'package:fitness_mobile/services/auth_service.dart';
 import 'package:fitness_mobile/services/log_service.dart';
 import 'package:fitness_mobile/services/network_service.dart';
+import 'package:fitness_mobile/tabs/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -18,10 +20,12 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 void main() {
   Get.put(NetWorkService());
   Get.put(AuthProvider(Get.find<NetWorkService>()));
+  Get.put(UploadFileProvider(Get.find<NetWorkService>()));
   Get.put(ProgramProvider(Get.find<NetWorkService>()));
   Get.put(DietProvider(Get.find<NetWorkService>()));
   Get.put(LogProvider(Get.find<NetWorkService>()));
   Get.put(AuthRepository(Get.find<AuthProvider>()));
+  Get.put(UploadFileRepository(Get.find<UploadFileProvider>()));
   Get.put(ExerciseRepository(Get.find<ProgramProvider>()));
   Get.put(DietRepository(Get.find<DietProvider>()));
   Get.put(LogRepository(Get.find<LogProvider>()));
@@ -62,12 +66,12 @@ class MyApp extends StatelessWidget {
           false, // Disable pull-up to load more functionality when Viewport is less than one screen
       enableBallisticLoad: true, // trigger load more by BallisticScrollActivity
       child: GetMaterialApp(
-        title: 'fitness_mobile Trainer',
+        title: 'Personal Trainer',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.red,
         ),
-        home: const WelcomeScreen(),
+        home: const SplashScreen(),
         builder: EasyLoading.init(),
       ),
     );
