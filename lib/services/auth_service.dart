@@ -41,7 +41,7 @@ class AuthService extends GetxService {
     try {
       final res = await authRepository.getUserInfo();
       userModel.value = res;
-      if(userModel.value?.fatPercent == null) {
+      if (userModel.value?.fatPercent == null) {
         Get.offAll(() => const SignUpAdditionalInfoScreen());
       } else {
         Get.offAll(() => const HomeView());
@@ -50,7 +50,6 @@ class AuthService extends GetxService {
       Get.snackbar('Get User Info Error', e.toString());
     }
     EasyLoading.dismiss();
-
   }
 
   void onRegister(
@@ -68,7 +67,18 @@ class AuthService extends GetxService {
       Get.snackbar('Register failed', e.toString());
     }
     EasyLoading.dismiss();
+  }
 
+  void onResetPassword(String oldPass, String newPass) async {
+    try {
+      EasyLoading.show();
+      await authRepository.resetPassword(oldPass, newPass);
+      Get.snackbar('Successful', 'Update your password');
+      Get.back();
+    } on Exception catch (e) {
+      Get.snackbar('Register failed', e.toString());
+    }
+    EasyLoading.dismiss();
   }
 
   void logout() async {

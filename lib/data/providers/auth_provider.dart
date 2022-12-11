@@ -9,6 +9,7 @@ class AuthProvider {
   AuthProvider(this.networkService);
 
   final String loginUrl = '$baseUrl/user/login';
+  final String resetPasswordUrl = '$baseUrl/user/reset-password';
   final String registerUrl = '$baseUrl/user/new';
   final String userInfoUrl = '$baseUrl/user/get-info';
   final String updateUserInfoUrl = '$baseUrl/user/update';
@@ -18,6 +19,11 @@ class AuthProvider {
   Future<HttpResponse> login(String username, String password) {
     return networkService
         .post(loginUrl, data: {"username": username, "password": password});
+  }
+
+  Future<HttpResponse> resetPassword(String oldPassword, String newPassword) {
+    return networkService
+        .put(resetPasswordUrl, data: {"oldPassword": oldPassword, "newPassword": newPassword});
   }
 
   Future<HttpResponse> getUserInfo() {

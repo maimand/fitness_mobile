@@ -12,6 +12,10 @@ class AuthRepository {
     return result;
   }
 
+  Future<void> resetPassword(String oldPass, String newPass) async {
+    await provider.resetPassword(oldPass, newPass);
+  }
+
   Future<UserModel> getUserInfo() async {
     final response = await provider.getUserInfo();
     final result = UserModel.fromJson(response.body);

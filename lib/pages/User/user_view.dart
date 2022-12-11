@@ -1,4 +1,5 @@
 import 'package:fitness_mobile/constants/constants.dart';
+import 'package:fitness_mobile/pages/User/update_password.dart';
 import 'package:fitness_mobile/pages/User/update_profile.dart';
 import 'package:fitness_mobile/services/auth_service.dart';
 import 'package:fitness_mobile/utils/double_extensions.dart';
@@ -49,7 +50,7 @@ class UserProfileView extends StatelessWidget {
                   style: const TextStyle(fontSize: 28),
                 ),
                 IconButton(
-                  tooltip: 'Update profile',
+                    tooltip: 'Update profile',
                     onPressed: () {
                       Get.to(() => const UpdateProfile());
                     },
@@ -105,9 +106,16 @@ class UserProfileView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text('Body Fat:'),
-                Text('${controller.userModel.value?.fatPercent?.toPercentFormat()} %')
+                Text(
+                    '${controller.userModel.value?.fatPercent?.toPercentFormat()} %')
               ],
             ),
+            const SizedBox(height: 24),
+            TextButton(
+                onPressed: () {
+                  Get.to(() => UpdatePasswordScreen());
+                },
+                child: const Text('Change your password'))
           ],
         ),
       ),
