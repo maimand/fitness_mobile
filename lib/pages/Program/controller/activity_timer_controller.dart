@@ -3,6 +3,7 @@ import 'package:fitness_mobile/data/repositories/exercise_repository.dart';
 import 'package:fitness_mobile/pages/Program/controller/program_controller.dart';
 import 'package:fitness_mobile/services/log_service.dart';
 import 'package:get/get.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ExerciseTimerController extends GetxController {
   final ExerciseRepository exerciseRepository;
@@ -14,6 +15,7 @@ class ExerciseTimerController extends GetxController {
 
   List<ExerciseDetailModel> exercises = <ExerciseDetailModel>[];
   RxBool isLoading = true.obs;
+  late YoutubePlayerController videoController;
 
   RxInt currentIndex = 0.obs;
 
@@ -23,7 +25,21 @@ class ExerciseTimerController extends GetxController {
   @override
   void onInit() {
     initExercise();
+    initVideo();
     super.onInit();
+  }
+
+  initVideo() {
+    final videoId = YoutubePlayer.convertUrlToId(
+        'https://www.youtube.com/watch?v=bYMUb4uQZoo');
+    videoController = YoutubePlayerController(
+      initialVideoId: videoId ?? '',
+    );
+  }
+
+  @override
+  void onClose() {
+    videoController.dispose();
   }
 
   Future<void> initExercise() async {
@@ -57,8 +73,13 @@ class ExerciseTimerController extends GetxController {
   }
 
   void onDone() {
-    currentIndex.value++;
-    logService.logExercise(currentExercise);
-    getNextExercise();
+    if(currentIndex.value < programController.exercises.length - 1) {
+      currentIndex.value++;
+      logService.logExercise(currentExercise);
+      getNextExercise();
+    } else {
+      Get.back();
+      Get.snackbar('Congratulations', 'Your workout is completed!!');
+    }
   }
 }

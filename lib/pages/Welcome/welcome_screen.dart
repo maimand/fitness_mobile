@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../../components/background.dart';
 import 'components/login_signup_btn.dart';
@@ -9,6 +10,9 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    EasyLoading.instance
+      ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+      ..indicatorColor = Colors.red;
     return const Background(
       child: SingleChildScrollView(
         child: SafeArea(
@@ -23,6 +27,8 @@ class MobileWelcomeScreen extends StatelessWidget {
   const MobileWelcomeScreen({
     Key? key,
   }) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {

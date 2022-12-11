@@ -1,10 +1,9 @@
 import 'package:fitness_mobile/pages/Program/controller/activity_timer_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ActivityTimer extends StatelessWidget {
-  final String image = 'http://d205bpvrqc9yn1.cloudfront.net/0251.gif';
-  final String tag = 'imageHeader';
 
   const ActivityTimer({Key? key}) : super(key: key);
 
@@ -23,17 +22,29 @@ class ActivityTimer extends StatelessWidget {
                 children: <Widget>[
                   Stack(
                     children: <Widget>[
-                      Hero(
-                        tag: tag,
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          height: 270,
-                          child: Image.network(
-                            image,
-                            fit: BoxFit.fitHeight,
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: 270,
+                        child: YoutubePlayerBuilder(
+                          player: YoutubePlayer(
+                            controller: controller.videoController,
+                            bottomActions: [
+                              CurrentPosition(),
+                              ProgressBar(isExpanded: true),
+                            ],
                           ),
+                          builder: (context, player) {
+                            return Column(
+                              children: [
+                                // some widgets
+                                player,
+                                //some other widgets
+                              ],
+                            );
+                          },
                         ),
                       ),
+
                       Positioned(
                         top: 40,
                         left: 20,

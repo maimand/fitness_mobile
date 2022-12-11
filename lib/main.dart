@@ -29,9 +29,7 @@ void main() {
   Get.put(
       LogService(Get.find<LogRepository>(), Get.find<ExerciseRepository>()));
 
-  EasyLoading.instance
-    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
-    ..indicatorColor = Colors.red;
+
 
   runApp(const MyApp());
 }
@@ -73,5 +71,6 @@ class MyApp extends StatelessWidget {
         builder: EasyLoading.init(),
       ),
     );
+
   }
 }
