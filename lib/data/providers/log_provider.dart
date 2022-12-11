@@ -17,7 +17,6 @@ class LogProvider {
     return networkService.get(
       dietLogUrl,
     );
-    // queryParameters: {"page": page , "size": size});
   }
 
   Future<HttpResponse> getExerciseLogs(
@@ -25,7 +24,6 @@ class LogProvider {
     return networkService.get(
       exerciseLogUrl,
     );
-    // queryParameters: {"page": page , "size": size});
   }
 
   Future<HttpResponse> getBodyLogs(
@@ -33,7 +31,6 @@ class LogProvider {
     return networkService.get(
       bodyLogUrl,
     );
-    // queryParameters: {"page": page , "size": size});
   }
 
   Future<HttpResponse> postDietLog({required FoodLogRequest log}) {
@@ -47,8 +44,4 @@ class LogProvider {
   Future<HttpResponse> postBodyLog({required String image}) {
     return networkService.post(bodyLogUrl, data: {'image': image});
   }
-
-  // Future<HttpResponse> getFoodDetailByName({required String name}) {
-  //   return networkService.get('$getDietUrl/$name');
-  // }
 }

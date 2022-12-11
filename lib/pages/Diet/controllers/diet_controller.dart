@@ -17,6 +17,7 @@ class DietController extends GetxController {
   RxList<Food> foods = <Food>[].obs;
   int currentPage = 1;
   int total = 0;
+  RxBool isLoading = true.obs;
 
   RefreshController refreshController =
       RefreshController(initialRefresh: false);
@@ -25,11 +26,14 @@ class DietController extends GetxController {
 
   @override
   void onInit() {
-    getFood();
+    getFood(showLoading: true);
     super.onInit();
   }
 
-  Future<void> getFood() async {
+  Future<void> getFood({bool showLoading = false}) async {
+    if(showLoading) {
+      isLoading.value = true;
+    }
     try {
       final res = await repository.getFoods(
           name: searchController.text.trim(), page: currentPage);
@@ -38,14 +42,21 @@ class DietController extends GetxController {
       foods.addAll(res.items ?? []);
     } on Exception catch (e) {
       Get.snackbar('Get Food Failed', e.toString());
+    } finally {
+      if(showLoading) {
+        isLoading.value = false;
+      }
     }
   }
 
   void onLoadMore() async {
     if (foods.length < total) {
+      refreshController.requestLoading();
       currentPage++;
       await getFood();
       refreshController.loadComplete();
+    } else {
+      refreshController.loadNoData();
     }
   }
 
@@ -63,8 +74,6 @@ class DietController extends GetxController {
   }
 
   void onChange() async {
-    searchController.clear();
-    await Future.delayed(const Duration(seconds: 2));
     onRefresh();
   }
 
@@ -72,7 +81,6 @@ class DietController extends GetxController {
     try {
       logService.logFood(food);
       Get.snackbar('Success', 'Added to your diet today');
-
     } on Exception catch (e) {
       Get.snackbar('Log Error', e.toString());
     }
@@ -89,7 +97,9 @@ class DietController extends GetxController {
     }
     try {
       final res = await repository.predictFood(pickedFile.path);
-      Get.to(() => DietDetailView(food: res,));
+      Get.to(() => DietDetailView(
+            food: res,
+          ));
     } on Exception catch (e) {
       Get.snackbar('Predict Food Failed', e.toString());
     }
@@ -106,7 +116,9 @@ class DietController extends GetxController {
     }
     try {
       final res = await repository.predictFood(pickedFile.path);
-      Get.to(() => DietDetailView(food: res,));
+      Get.to(() => DietDetailView(
+            food: res,
+          ));
     } on Exception catch (e) {
       Get.snackbar('Predict Food Failed', e.toString());
     }

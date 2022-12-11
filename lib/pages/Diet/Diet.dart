@@ -36,10 +36,10 @@ class Diet extends StatelessWidget {
                     decoration: const BoxDecoration(
                         border: Border(
                             bottom:
-                                BorderSide(color: Colors.orange, width: 1))),
+                                BorderSide(color: Colors.red, width: 1))),
                     child: TextField(
                       controller: controller.searchController,
-                      onChanged: (value) => controller.onChange(),
+                      onSubmitted: (val) => controller.onChange(),
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.zero,
                         border: InputBorder.none,
@@ -106,7 +106,7 @@ class Diet extends StatelessWidget {
             const SizedBox(height: 20),
             Obx(
               () => Expanded(
-                child: controller.foods.isEmpty
+                child: controller.isLoading.value
                     ? const Center(
                         child: CircularProgressIndicator(),
                       )

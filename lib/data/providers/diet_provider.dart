@@ -14,7 +14,7 @@ class DietProvider {
   Future<HttpResponse> getDiet(
       {String? food, required int page, required int size}) {
     return networkService.get(getDietUrl,
-        queryParameters: {"name": food, "page": page, "size": size});
+        queryParameters: {"food": food, "page": page, "size": size});
   }
 
   Future<HttpResponse> getFoodDetailByName({required String name}) {
