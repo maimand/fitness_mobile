@@ -17,8 +17,8 @@ class ExerciseLogList extends StatelessWidget {
           DateFormat('dd-MM-yyyy').format(element.time ?? DateTime.now()),
       groupComparator: (value1, value2) => value2.compareTo(value1),
       itemComparator: (item1, item2) =>
-          (item1.time ?? DateTime.now()).compareTo((item2.time ?? DateTime.now())),
-      order: GroupedListOrder.DESC,
+          (item1.time?.second ?? 0).compareTo((item2.time?.second ?? 0)),
+      order: GroupedListOrder.ASC,
       useStickyGroupSeparators: true,
       groupSeparatorBuilder: (String value) => Padding(
         padding: const EdgeInsets.all(8.0),

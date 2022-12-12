@@ -18,7 +18,7 @@ class DietLogList extends StatelessWidget {
       groupComparator: (value1, value2) => value2.compareTo(value1),
       itemComparator: (item1, item2) =>
           (item1.time ?? DateTime.now()).compareTo((item2.time ?? DateTime.now())),
-      order: GroupedListOrder.DESC,
+      order: GroupedListOrder.ASC,
       useStickyGroupSeparators: true,
       groupSeparatorBuilder: (String value) => Padding(
         padding: const EdgeInsets.all(8.0),

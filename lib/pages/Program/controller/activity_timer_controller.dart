@@ -44,12 +44,10 @@ class ExerciseTimerController extends GetxController {
 
   Future<void> initExercise() async {
     try {
-      List<Future<ExerciseDetailModel>> requests = [
-        exerciseRepository.getExerciseDetailByName(
-            name: programController.exercises.elementAt(0).name ?? ''),
-        exerciseRepository.getExerciseDetailByName(
-            name: programController.exercises.elementAt(1).name ?? '')
-      ];
+      List<Future<ExerciseDetailModel>> requests = programController.exercises
+          .map((element) => exerciseRepository.getExerciseDetailByName(
+              name: element.name ?? ''))
+          .toList();
       final res = await Future.wait(requests);
       exercises.addAll(res);
     } on Exception catch (e) {
@@ -73,10 +71,9 @@ class ExerciseTimerController extends GetxController {
   }
 
   void onDone() {
-    if(currentIndex.value < programController.exercises.length - 1) {
+    if (currentIndex.value < programController.exercises.length - 1) {
       currentIndex.value++;
       logService.logExercise(currentExercise);
-      getNextExercise();
     } else {
       Get.back();
       Get.snackbar('Congratulations', 'Your workout is completed!!');

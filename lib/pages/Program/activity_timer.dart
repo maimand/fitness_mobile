@@ -75,6 +75,7 @@ class ActivityTimer extends StatelessWidget {
                     width: Get.width,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Expanded(
                           child: Column(

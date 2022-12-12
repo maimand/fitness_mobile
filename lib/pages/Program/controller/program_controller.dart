@@ -10,14 +10,9 @@ class ProgramController extends GetxController {
 
   RxList<ExerciseModel> exercises = <ExerciseModel>[].obs;
 
-  @override
-  void onInit() {
-    print('initi');
-    super.onInit();
-  }
-
   Future<void> getExercise(String part) async {
     try {
+      exercises.clear();
       EasyLoading.show();
       final res = await repository.getExercisesByBodyPart(name: part);
       exercises.assignAll(res);

@@ -58,7 +58,7 @@ ExerciseLog _$ExerciseLogFromJson(Map<String, dynamic> json) {
   return ExerciseLog(
     json['exerciseName'] as String?,
     json['reps'] as int?,
-    json['time'] == null ? null : DateTime.parse(json['time'] as String),
+    json['time'] == null ? null : DateTime.parse((json['time'] as String ) + 'Z'),
     json['totalCaloriesBurn'] as int?,
   );
 }
@@ -74,7 +74,7 @@ Map<String, dynamic> _$ExerciseLogToJson(ExerciseLog instance) =>
 BodyLog _$BodyLogFromJson(Map<String, dynamic> json) {
   return BodyLog(
     json['image'] as String?,
-    json['time'] == null ? null : DateTime.parse(json['time'] as String),
+    json['time'] == null ? null :  DateTime.parse((json['time'] as String ) + 'Z'),
   );
 }
 
