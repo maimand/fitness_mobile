@@ -17,6 +17,10 @@ class FoodCard extends StatelessWidget {
               ));
         },
         child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black12),
+            borderRadius: BorderRadius.circular(8)
+          ),
           margin: const EdgeInsets.symmetric(vertical: 20.0),
           child:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +30,7 @@ class FoodCard extends StatelessWidget {
                 height: 160.0,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(
-                    Radius.circular(20.0),
+                    Radius.circular(8),
                   ),
                   image: DecorationImage(
                     image: NetworkImage(food.image!),
@@ -36,22 +40,11 @@ class FoodCard extends StatelessWidget {
               ),
               Container(
                 width: Get.width * 0.8,
-                margin: const EdgeInsets.only(top: 10.0),
+                margin: const  EdgeInsets.all(16.0),
                 child: Text(
                   food.name ?? '',
                   textAlign: TextAlign.left,
-                  style: const TextStyle(fontSize: 14.0),
-                ),
-              ),
-              Container(
-                width: Get.width * 0.8,
-                margin: const EdgeInsets.only(top: 5.0),
-                child: Text(
-                  '${food.calo} calories',
-                  style: const TextStyle(
-                    fontSize: 12.0,
-                    color: Colors.grey,
-                  ),
+                  style: const TextStyle(fontSize: 18.0),
                 ),
               ),
             ],

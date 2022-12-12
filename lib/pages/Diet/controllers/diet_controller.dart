@@ -1,7 +1,8 @@
 import 'package:fitness_mobile/data/models/diet.model.dart';
 import 'package:fitness_mobile/data/repositories/diet_repository.dart';
-import 'package:fitness_mobile/pages/Diet/DietDetail.dart';
+import 'package:fitness_mobile/pages/Diet/food_predict_result.dart';
 import 'package:fitness_mobile/services/log_service.dart';
+import 'package:fitness_mobile/utils/dialog_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -77,9 +78,9 @@ class DietController extends GetxController {
     onRefresh();
   }
 
-  void logFood(Food food) {
+  void logFood(Food food, int number) {
     try {
-      logService.logFood(food);
+      logService.logFood(food, number);
       Get.snackbar('Success', 'Added to your diet today');
     } on Exception catch (e) {
       Get.snackbar('Log Error', e.toString());
@@ -92,18 +93,9 @@ class DietController extends GetxController {
       imageQuality: 100,
     );
 
-    if (pickedFile == null) {
-      return;
-    }
-    try {
-      final res = await repository.predictFood(pickedFile.path);
-      Get.to(() => DietDetailView(
-            food: res,
-          ));
-    } on Exception catch (e) {
-      Get.snackbar('Predict Food Failed', e.toString());
-    }
+    predict(pickedFile);
   }
+
 
   void searchWithGallery() async {
     final XFile? pickedFile = await _picker.pickImage(
@@ -111,16 +103,26 @@ class DietController extends GetxController {
       imageQuality: 100,
     );
 
+    predict(pickedFile);
+  }
+
+  void predict(XFile? pickedFile) async {
     if (pickedFile == null) {
       return;
     }
     try {
+      showLoading();
       final res = await repository.predictFood(pickedFile.path);
-      Get.to(() => DietDetailView(
-            food: res,
-          ));
+      final r = await repository.getFoods(name: res.trim());
+      Get.to(() => PredictResultView(
+        food: r.items ?? [],
+        foodName: res,
+      ));
     } on Exception catch (e) {
       Get.snackbar('Predict Food Failed', e.toString());
+    } finally {
+      hideLoading();
     }
   }
+
 }

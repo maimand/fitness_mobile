@@ -54,6 +54,7 @@ dependencies:
   grouped_list: ^5.1.2
   flutter_easyloading: ^3.0.5
   full_screen_image_null_safe: ^2.0.0
+  numberpicker: ^2.1.1
 
 dev_dependencies:
   flutter_test:

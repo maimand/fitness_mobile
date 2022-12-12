@@ -1,5 +1,6 @@
 import 'package:fitness_mobile/data/models/user.model.dart';
 import 'package:fitness_mobile/data/repositories/auth_repository.dart';
+import 'package:fitness_mobile/utils/dialog_utils.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +12,7 @@ class CalculateFatController extends GetxController {
   Future<bool> onPredictFat(
       UserInfoAdvancePredictRequest request, Function(double) onCallback) async {
     try {
-      EasyLoading.show();
+      showLoading();
       final fat = await authRepository.predictFat(request);
       if (fat == null) {
         throw 'Cannot predict!!';

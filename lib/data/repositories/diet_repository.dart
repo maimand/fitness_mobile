@@ -7,7 +7,7 @@ class DietRepository {
   DietRepository(this.provider);
 
   Future<FoodList> getFoods(
-      {String name = '', int page = 0, int size = 20}) async {
+      {String name = '', int page = 1, int size = 20}) async {
     final response = await provider.getDiet(food: name, page: page, size: size);
     final result = FoodList.fromJson(response.body);
     return result;
@@ -22,12 +22,11 @@ class DietRepository {
     return result;
   }
 
-  Future<Food> predictFood(String path) async {
+  Future<String> predictFood(String path) async {
     try {
       final res = await provider.predictFood(path: path);
       final String name = res.body['res'];
-      final r =  await getFoodByName(name: name.trim());
-      return r;
+      return name;
     } on Exception {
       rethrow ;
     }

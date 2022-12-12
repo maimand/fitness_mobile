@@ -10,9 +10,9 @@ class LogService extends GetxService {
 
   LogService(this.repository, this.exerciseRepository);
 
-  void logFood(Food food) {
-    final log = FoodLogRequest(
-        food.id ?? '', food.name ?? '', 1, food.calo?.toInt() ?? 0);
+  void logFood(Food food, int number) {
+    final log = FoodLogRequest(food.id ?? '', food.name ?? '', number,
+        (food.calo?.toInt() ?? 0) * number);
     repository.postFoodLog(log: log);
   }
 

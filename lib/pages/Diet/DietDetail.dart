@@ -5,7 +5,10 @@ import 'package:get/get.dart';
 
 class DietDetailView extends StatelessWidget {
   final Food food;
-  const DietDetailView({Key? key, required this.food}) : super(key: key);
+
+  DietDetailView({Key? key, required this.food}) : super(key: key);
+
+  final _textFieldController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +76,30 @@ class DietDetailView extends StatelessWidget {
       ),
       bottomNavigationBar: InkWell(
         onTap: () {
-          Get.find<DietController>().logFood(food);
+          showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text('Please enter no of potion'),
+                  content: TextField(
+                    controller: _textFieldController,
+                    decoration:
+                       const InputDecoration(hintText: "Number"),
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      child: const Text('OK'),
+                      onPressed: () {
+                        Get.back();
+                        Get.find<DietController>().logFood(
+                            food,
+                            int.tryParse(_textFieldController.text.trim()) ??
+                                1);
+                      },
+                    ),
+                  ],
+                );
+              });
         },
         child: Container(
           padding: const EdgeInsets.all(20.0),
@@ -84,15 +110,15 @@ class DietDetailView extends StatelessWidget {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const <Widget>[
-              Text(
+            children: <Widget>[
+              const Text(
                 'Track my food',
                 style: TextStyle(
                   fontSize: 16.0,
                   color: Colors.white,
                 ),
               ),
-              Icon(
+              const Icon(
                 Icons.add,
                 size: 25.0,
                 color: Colors.white,

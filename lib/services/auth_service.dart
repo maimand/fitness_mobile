@@ -4,6 +4,7 @@ import 'package:fitness_mobile/data/repositories/auth_repository.dart';
 import 'package:fitness_mobile/pages/Login/login_screen.dart';
 import 'package:fitness_mobile/pages/Signup/sign_up_additional_info.dart';
 import 'package:fitness_mobile/tabs/home_view.dart';
+import 'package:fitness_mobile/utils/dialog_utils.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,7 +24,7 @@ class AuthService extends GetxService {
 
   void onLogin(String username, String password) async {
     try {
-      EasyLoading.show();
+      showLoading();
       final res = await authRepository.login(username, password);
       final prefs = await SharedPreferences.getInstance();
       prefs.setString('accessToken', res.accessToken!);
@@ -37,7 +38,7 @@ class AuthService extends GetxService {
   }
 
   Future<void> getUserInformation({bool init = false, Function? callback}) async {
-    EasyLoading.show();
+    showLoading();
     try {
       final res = await authRepository.getUserInfo();
       userModel.value = res;
@@ -65,7 +66,7 @@ class AuthService extends GetxService {
       required String email,
       required String code}) async {
     try {
-      EasyLoading.show();
+      showLoading();
 
       await authRepository.register(
           fullname: username, password: password, email: email, code: code);
@@ -78,7 +79,7 @@ class AuthService extends GetxService {
 
   void onResetPassword(String oldPass, String newPass) async {
     try {
-      EasyLoading.show();
+      showLoading();
       await authRepository.resetPassword(oldPass, newPass);
       Get.snackbar('Successful', 'Update your password');
       Get.back();
