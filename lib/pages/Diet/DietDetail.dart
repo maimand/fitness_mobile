@@ -21,7 +21,7 @@ class DietDetailView extends StatelessWidget {
             const SizedBox(height: 8),
             Container(
               width: Get.width,
-              height: 160.0,
+              height: 300.0,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(
                   Radius.circular(20.0),
@@ -79,7 +79,7 @@ class DietDetailView extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           margin: const EdgeInsets.all(20.0),
           decoration: BoxDecoration(
-            color: const Color.fromRGBO(219, 228, 255, 1.0),
+            color: Colors.red,
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Row(
@@ -89,13 +89,13 @@ class DietDetailView extends StatelessWidget {
                 'Track my food',
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: Color.fromRGBO(122, 158, 255, 1.0),
+                  color: Colors.white,
                 ),
               ),
               Icon(
                 Icons.add,
                 size: 25.0,
-                color: Color.fromRGBO(122, 158, 255, 1.0),
+                color: Colors.white,
               )
             ],
           ),

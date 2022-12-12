@@ -78,6 +78,7 @@ class ActivityTimer extends StatelessWidget {
                       children: <Widget>[
                         Expanded(
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 15.0),
@@ -90,14 +91,14 @@ class ActivityTimer extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 20.0),
+                              const Padding(
+                                padding: EdgeInsets.only(bottom: 20.0),
                                 child: Text(
                                   'Reps: 8',
                                   style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.w900,
-                                    color: Colors.grey[300],
+                                    color: Colors.black38,
                                   ),
                                 ),
                               ),
@@ -124,14 +125,14 @@ class ActivityTimer extends StatelessWidget {
                             height: 55.0,
                             decoration: BoxDecoration(
                               color:
-                              const Color.fromRGBO(232, 242, 248, 1.0),
+                              Colors.red,
                               borderRadius: BorderRadius.circular(15.0),
                             ),
                             child: const Center(
                               child: Text(
                                 'Next',
                                 style: TextStyle(
-                                  color: Color.fromRGBO(82, 126, 255, 1.0),
+                                  color: Colors.white,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w900,
                                 ),

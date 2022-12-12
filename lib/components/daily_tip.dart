@@ -28,7 +28,7 @@ class DailyTip extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(element['image'] ?? ''),
+                image: NetworkImage(element['image'] ?? ''),
                 fit: BoxFit.fill,
               ),
               borderRadius: const BorderRadius.all(
@@ -68,7 +68,7 @@ class DailyTip extends StatelessWidget {
               borderRadius: BorderRadius.all(
                 Radius.circular(20.0),
               ),
-              color: Colors.lightBlue,
+              color: Colors.redAccent,
             ),
             child: const Text(
               'More',

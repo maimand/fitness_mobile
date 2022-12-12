@@ -32,7 +32,7 @@ class Tabs extends StatelessWidget {
             ),
           ],
           labelPadding: EdgeInsets.all(5.0),
-          labelColor: Colors.blue,
+          labelColor: Colors.red,
           unselectedLabelColor: Colors.black12,
           indicatorWeight: 0.01,
         ),

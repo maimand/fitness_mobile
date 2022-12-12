@@ -35,7 +35,7 @@ class NextStep extends StatelessWidget {
                   '$rep reps',
                   style: TextStyle(
                     fontSize: 14.0,
-                    color: Colors.blueGrey[200],
+                    color: Colors.red[200],
                   ),
                 )
               ],

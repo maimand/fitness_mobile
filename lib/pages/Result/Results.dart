@@ -4,8 +4,6 @@ import 'package:fitness_mobile/pages/Result/tracking_view.dart';
 import 'package:fitness_mobile/pages/Result/widgets/log_chart.dart';
 import 'package:fitness_mobile/services/log_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rounded_progress_bar/flutter_rounded_progress_bar.dart';
-import 'package:flutter_rounded_progress_bar/rounded_progress_bar_style.dart';
 import 'package:get/get.dart';
 
 class Results extends StatelessWidget {
@@ -47,67 +45,71 @@ class Results extends StatelessWidget {
                               horizontal: 20.0,
                             ),
                             width: width,
-                            decoration: const BoxDecoration(
-                              color: Color.fromRGBO(231, 241, 248, 1.0),
-                            ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 const LogChart(),
-                                Text(
+                                const SizedBox(height: 20),
+                                const Text(
                                   'You\'ve burned',
                                   style: TextStyle(
-                                    color: Colors.grey[400],
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
                                   ),
                                 ),
                                 Text(
                                   '${controller.todayCaloriesBurned} kCal',
                                   style: TextStyle(
                                     fontSize: 18.0,
-                                    fontWeight: FontWeight.w900,
+                                    fontWeight: FontWeight.w500,
                                     color: Colors.grey[500],
                                   ),
                                 ),
-                                RoundedProgressBar(
-                                  height: 25.0,
-                                  style: RoundedProgressBarStyle(
-                                    borderWidth: 0,
-                                    widthShadow: 0,
-                                  ),
-                                  margin: const EdgeInsets.only(
-                                    top: 10.0,
-                                    bottom: 16.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(24),
-                                  percent: 28.0,
-                                ),
-                                Text(
+                                // RoundedProgressBar(
+                                //   height: 25.0,
+                                //   style: RoundedProgressBarStyle(
+                                //     borderWidth: 0,
+                                //     widthShadow: 0,
+                                //   ),
+                                //   margin: const EdgeInsets.only(
+                                //     top: 10.0,
+                                //     bottom: 16.0,
+                                //   ),
+                                //   borderRadius: BorderRadius.circular(24),
+                                //   percent: 28.0,
+                                //
+                                // ),
+                                const SizedBox(height: 20),
+                                const Text(
                                   'You\'ve eaten',
                                   style: TextStyle(
-                                    color: Colors.grey[400],
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
                                   ),
                                 ),
                                 Text(
                                   '${controller.todayCaloriesTaken} kCal',
                                   style: TextStyle(
                                     fontSize: 18.0,
-                                    fontWeight: FontWeight.w900,
+                                    fontWeight: FontWeight.w500,
                                     color: Colors.grey[500],
                                   ),
                                 ),
-                                RoundedProgressBar(
-                                  height: 25.0,
-                                  style: RoundedProgressBarStyle(
-                                    borderWidth: 0,
-                                    widthShadow: 0,
-                                  ),
-                                  margin: const EdgeInsets.only(
-                                    top: 10.0,
-                                    bottom: 16.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(24),
-                                  percent: 28.0,
-                                ),
+                                // RoundedProgressBar(
+                                //   height: 25.0,
+                                //   style: RoundedProgressBarStyle(
+                                //     borderWidth: 0,
+                                //     widthShadow: 0,
+                                //   ),
+                                //   margin: const EdgeInsets.only(
+                                //     top: 10.0,
+                                //     bottom: 16.0,
+                                //   ),
+                                //   borderRadius: BorderRadius.circular(24),
+                                //   percent: 28.0,
+                                // ),
                               ],
                             ),
                           ),
@@ -131,7 +133,7 @@ class Results extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontSize: 18.0,
-                                      color: Colors.blueGrey,
+                                      color: Colors.black,
                                     ),
                                   ),
                                 ),
@@ -183,8 +185,7 @@ class Results extends StatelessWidget {
                                   child: Container(
                                     padding: const EdgeInsets.all(20.0),
                                     decoration: BoxDecoration(
-                                      color: const Color.fromRGBO(
-                                          241, 227, 255, 1.0),
+                                      color: Colors.red,
                                       borderRadius: BorderRadius.circular(15.0),
                                     ),
                                     child: Row(
@@ -194,15 +195,13 @@ class Results extends StatelessWidget {
                                         Text(
                                           'Body Progress',
                                           style: TextStyle(
-                                            color: Color.fromRGBO(
-                                                190, 130, 255, 1.0),
+                                            color: Colors.white,
                                             fontSize: 18.0,
                                           ),
                                         ),
                                         Icon(
                                           Icons.camera_alt,
-                                          color: Color.fromRGBO(
-                                              190, 130, 255, 1.0),
+                                          color: Colors.white,
                                         ),
                                       ],
                                     ),

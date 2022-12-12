@@ -31,7 +31,7 @@ class ActivityDetail extends StatelessWidget {
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: 270,
-                    child: Image.asset(
+                    child: Image.network(
                       exercise.image,
                       fit: BoxFit.fitHeight,
                     ),
@@ -71,69 +71,9 @@ class ActivityDetail extends StatelessWidget {
                       Text(
                         exercise.title,
                         style: const TextStyle(
-                          fontSize: 22.0,
-                          color: Colors.blueGrey,
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(20.0),
-                        margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-                        height: 90.0,
-                        decoration: BoxDecoration(
-                          color: const Color.fromRGBO(231, 241, 255, 1.0),
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              margin: const EdgeInsets.only(right: 55.0),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    'Time',
-                                    style: TextStyle(
-                                        fontSize: 14.0,
-                                        color: Colors.blueGrey[300]),
-                                  ),
-                                  Text(
-                                    '${exercise.time}',
-                                    style: const TextStyle(
-                                        fontSize: 18.0,
-                                        color: Colors.lightBlue,
-                                        fontWeight: FontWeight.w900),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(right: 45.0),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    'Intensity',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      color: Colors.blueGrey[300],
-                                    ),
-                                  ),
-                                  Text(
-                                    exercise.difficult,
-                                    style: const TextStyle(
-                                      fontSize: 18.0,
-                                      color: Colors.lightBlue,
-                                      fontWeight: FontWeight.w900,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                          fontSize: 40.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500
                         ),
                       ),
                       Obx(
