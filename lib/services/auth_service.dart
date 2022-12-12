@@ -36,11 +36,15 @@ class AuthService extends GetxService {
     EasyLoading.dismiss();
   }
 
-  Future<void> getUserInformation({bool init = false}) async {
+  Future<void> getUserInformation({bool init = false, Function? callback}) async {
     EasyLoading.show();
     try {
       final res = await authRepository.getUserInfo();
       userModel.value = res;
+      if(callback != null) {
+        callback();
+        return;
+      }
       if (userModel.value?.fatPercent == null) {
         Get.offAll(() => const SignUpAdditionalInfoScreen());
       } else {
@@ -50,8 +54,9 @@ class AuthService extends GetxService {
       if(!init) {
         Get.snackbar('Get User Info Error', 'System Error');
       }
+    } finally {
+      EasyLoading.dismiss();
     }
-    EasyLoading.dismiss();
   }
 
   void onRegister(
@@ -64,7 +69,7 @@ class AuthService extends GetxService {
 
       await authRepository.register(
           fullname: username, password: password, email: email, code: code);
-      Get.offAll(() => const SignUpAdditionalInfoScreen());
+      onLogin(email, password);
     } on Exception {
       Get.snackbar('Register failed', 'System Error');
     }

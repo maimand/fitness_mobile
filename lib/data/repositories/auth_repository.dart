@@ -26,7 +26,7 @@ class AuthRepository {
       {required String fullname,
       required String password,
       required String email,
-      required String code}) async {
+      String? code}) async {
     await provider.register(
         fullname: fullname, password: password, email: email, code: code);
   }

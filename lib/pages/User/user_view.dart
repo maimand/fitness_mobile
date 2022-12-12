@@ -93,7 +93,7 @@ class UserProfileView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text('Age:'),
-                Text('${controller.userModel.value?.age}')
+                Text('${controller.userModel.value?.age ?? ''}')
               ],
             ),
             const SizedBox(height: 12),
@@ -107,7 +107,7 @@ class UserProfileView extends StatelessWidget {
               children: [
                 const Text('Body Fat:'),
                 Text(
-                    '${controller.userModel.value?.fatPercent?.toPercentFormat()} %')
+                    '${(controller.userModel.value?.fatPercent ?? 0).toPercentFormat() } %')
               ],
             ),
             const SizedBox(height: 24),

@@ -34,7 +34,7 @@ class AuthProvider {
       {required String fullname,
       required String password,
       required String email,
-      required String code}) {
+       String? code}) {
     return networkService.post(registerUrl, data: {
       "fullname": fullname,
       "password": password,

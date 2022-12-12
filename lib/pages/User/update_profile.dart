@@ -31,8 +31,9 @@ class UpdateProfile extends StatelessWidget {
                       await Get.to(() => PredictFatResult(
                             percent: a,
                           ));
-                      Get.find<AuthService>().getUserInformation();
-                      Get.back();
+                      Get.find<AuthService>().getUserInformation(callback: () {
+                        Get.back();
+                      });
                     },
                     onSkip: () {
                       Get.back();

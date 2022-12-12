@@ -1,6 +1,7 @@
 import 'package:fitness_mobile/constants/constants.dart';
 import 'package:fitness_mobile/pages/Signup/components/additional_form.dart';
 import 'package:fitness_mobile/pages/Signup/fat_predict_view.dart';
+import 'package:fitness_mobile/services/auth_service.dart';
 import 'package:fitness_mobile/tabs/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,9 +32,11 @@ class SignUpAdditionalInfoScreen extends StatelessWidget {
                       await Get.to(() => PredictFatResult(
                             percent: a,
                           ));
+                      await Get.find<AuthService>().getUserInformation();
                       Get.offAll(() => const HomeView());
                     },
-                    onSkip: () {
+                    onSkip: () async {
+                      await Get.find<AuthService>().getUserInformation();
                       Get.offAll(() => const HomeView());
                     },
                   ),
