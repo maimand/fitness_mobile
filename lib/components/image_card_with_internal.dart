@@ -32,10 +32,10 @@ class ImageCardWithInternal extends StatelessWidget {
         );
       },
       child: Container(
-        width: size.width * 0.85,
+        width: size.width,
         height: size.width * 0.60,
         padding: const EdgeInsets.all(20.0),
-        margin: const EdgeInsets.only(right: 15.0),
+        margin: const EdgeInsets.only(right: 20.0, left: 20, top: 12),
         decoration: BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(image),

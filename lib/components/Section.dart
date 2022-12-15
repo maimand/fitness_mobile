@@ -10,7 +10,7 @@ class Section extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 35.0),
+      margin: const EdgeInsets.only(top: 20.0),
       child: Column(
         children: <Widget>[
           SectionTitle((title != null) ? title! : ''),

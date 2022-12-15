@@ -32,11 +32,7 @@ class MainCardPrograms extends StatelessWidget {
       child: Container(
         width: size.width - 40,
         height: (size.width - 40) / 2,
-        margin: const EdgeInsets.only(
-          top: 40.0,
-          left: 20.0,
-          right: 20.0,
-        ),
+        margin: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(cardInfo['image']!),
