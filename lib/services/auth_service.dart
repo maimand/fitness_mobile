@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:fitness_mobile/data/models/user.model.dart';
 import 'package:fitness_mobile/data/repositories/auth_repository.dart';
 import 'package:fitness_mobile/pages/Login/login_screen.dart';
-import 'package:fitness_mobile/pages/Signup/sign_up_additional_info.dart';
+import 'package:fitness_mobile/pages/Signup/components/sign_up_additional_info.dart';
 import 'package:fitness_mobile/tabs/home_view.dart';
 import 'package:fitness_mobile/utils/dialog_utils.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';

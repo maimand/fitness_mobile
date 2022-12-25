@@ -2,7 +2,7 @@
 // import 'package:flutter_easyloading/flutter_easyloading.dart';
 //
 // import '../../components/background.dart';
-// import 'components/login_signup_btn.dart';
+// import 'components/options_signup_btn.dart';
 // import 'components/welcome_image.dart';
 //
 // class WelcomeScreen extends StatelessWidget {

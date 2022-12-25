@@ -1,5 +1,6 @@
 import 'package:fitness_mobile/components/already_have_an_account_acheck.dart';
 import 'package:fitness_mobile/constants/constants.dart';
+import 'package:fitness_mobile/pages/Signup/components/sign_up_options.dart';
 import 'package:fitness_mobile/pages/Signup/signup_screen.dart';
 import 'package:fitness_mobile/services/auth_service.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +79,7 @@ class LoginForm extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const SignUpScreen();
+                    return const SignUpOptionsScreen();
                   },
                 ),
               );

@@ -5,7 +5,7 @@ import 'package:fitness_mobile/services/auth_service.dart';
 import 'package:fitness_mobile/tabs/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../components/background.dart';
+import '../../../components/background.dart';
 
 class SignUpAdditionalInfoScreen extends StatelessWidget {
   const SignUpAdditionalInfoScreen({Key? key}) : super(key: key);

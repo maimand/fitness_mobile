@@ -7,15 +7,16 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 
 class SignUpForm extends StatelessWidget {
+  final String? qr;
   SignUpForm({
     Key? key,
+    this.qr
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController codeController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
 
 
@@ -83,22 +84,6 @@ class SignUpForm extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
-            child: TextFormField(
-              controller: codeController,
-              textInputAction: TextInputAction.done,
-              obscureText: true,
-              cursorColor: kPrimaryColor,
-              decoration: const InputDecoration(
-                hintText: "Your code",
-                prefixIcon: Padding(
-                  padding: EdgeInsets.all(defaultPadding),
-                  child: Icon(Icons.lock),
-                ),
-              ),
-            ),
-          ),
           const SizedBox(height: defaultPadding / 2),
           ElevatedButton(
             onPressed: () {
@@ -107,7 +92,7 @@ class SignUpForm extends StatelessWidget {
                     username: usernameController.text.trim(),
                     email: emailController.text.trim(),
                     password: passwordController.text.trim(),
-                    code: codeController.text.trim());
+                    code: qr ?? '');
               }
             },
             child: Text("Sign Up".toUpperCase()),
