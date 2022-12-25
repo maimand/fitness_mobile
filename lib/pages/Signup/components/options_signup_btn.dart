@@ -1,5 +1,4 @@
 import 'package:fitness_mobile/constants/constants.dart';
-import 'package:fitness_mobile/pages/Login/login_screen.dart';
 import 'package:fitness_mobile/pages/Signup/qr_scanner.dart';
 import 'package:fitness_mobile/pages/Signup/signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +26,7 @@ class SignUpOptions extends StatelessWidget {
           onPressed: () async {
             final code = await Get.to(() => const QRViewExample());
             if(code != null) {
-              Get.to(() => const SignUpScreen(), arguments: code);
+              Get.to(() => SignUpScreen(qr: code));
             } else {
               Get.snackbar('Error', 'Cannot get center code');
             }

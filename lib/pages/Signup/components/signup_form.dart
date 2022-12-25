@@ -101,6 +101,7 @@ class SignUpForm extends StatelessWidget {
           AlreadyHaveAnAccountCheck(
             login: false,
             press: () {
+              Get.until((route) => route.settings.name == '/LoginScreen');
               Navigator.push(
                 context,
                 MaterialPageRoute(

@@ -70,7 +70,9 @@ class AuthService extends GetxService {
 
       await authRepository.register(
           fullname: username, password: password, email: email, code: code);
-      onLogin(email, password);
+      Get.snackbar('Register successfully', 'Please wait until your admin accept you request');
+
+      // onLogin(email, password);
     } on Exception {
       Get.snackbar('Register failed', 'System Error');
     }
