@@ -1,7 +1,6 @@
 import 'package:fitness_mobile/components/already_have_an_account_acheck.dart';
 import 'package:fitness_mobile/constants/constants.dart';
 import 'package:fitness_mobile/pages/Signup/components/sign_up_options.dart';
-import 'package:fitness_mobile/pages/Signup/signup_screen.dart';
 import 'package:fitness_mobile/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';

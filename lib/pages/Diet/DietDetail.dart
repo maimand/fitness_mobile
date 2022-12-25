@@ -8,7 +8,7 @@ class DietDetailView extends StatelessWidget {
 
   DietDetailView({Key? key, required this.food}) : super(key: key);
 
-  final _textFieldController = TextEditingController();
+  final _textFieldController = TextEditingController(text: '1');
 
   @override
   Widget build(BuildContext context) {

@@ -13,6 +13,7 @@ class AuthService extends GetxService {
   final AuthRepository authRepository;
 
   Rxn<UserModel> userModel = Rxn();
+  Rxn<CenterModel> centerModel = Rxn();
 
   AuthService(this.authRepository);
 
@@ -42,6 +43,10 @@ class AuthService extends GetxService {
     try {
       final res = await authRepository.getUserInfo();
       userModel.value = res;
+      if(res.code != null) {
+        final center = await authRepository.getCenterInfo();
+        centerModel.value = center;
+      }
       if(callback != null) {
         callback();
         return;

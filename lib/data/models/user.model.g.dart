@@ -38,6 +38,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
     weight: (json['weight'] as num?)?.toDouble(),
     fatPercent: (json['fatPercent'] as num?)?.toDouble(),
     age: json['age'] as int?,
+    code: json['code'] as String?,
     gender: json['gender'] as String?,
   );
 }
@@ -50,6 +51,7 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'age': instance.age,
       'fatPercent': instance.fatPercent,
       'gender': instance.gender,
+      'code': instance.code,
     };
 
 UpdateUserRequest _$UpdateUserRequestFromJson(Map<String, dynamic> json) {
@@ -117,4 +119,27 @@ Map<String, dynamic> _$UserInfoAdvancePredictRequestToJson(
       'weight': instance.weight,
       'height': instance.height,
       'sex': instance.sex,
+    };
+
+CenterModel _$CenterModelFromJson(Map<String, dynamic> json) {
+  return CenterModel(
+    fullname: json['fullname'] as String?,
+    phone: json['phone'] as String?,
+    email: json['email'] as String?,
+    image: json['image'] as String?,
+    description: json['description'] as String?,
+    website: json['website'] as String?,
+    code: json['code'] as String?,
+  );
+}
+
+Map<String, dynamic> _$CenterModelToJson(CenterModel instance) =>
+    <String, dynamic>{
+      'fullname': instance.fullname,
+      'email': instance.email,
+      'code': instance.code,
+      'phone': instance.phone,
+      'image': instance.image,
+      'description': instance.description,
+      'website': instance.website,
     };

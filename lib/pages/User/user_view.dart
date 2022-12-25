@@ -1,4 +1,5 @@
 import 'package:fitness_mobile/constants/constants.dart';
+import 'package:fitness_mobile/pages/User/center_view.dart';
 import 'package:fitness_mobile/pages/User/update_password.dart';
 import 'package:fitness_mobile/pages/User/update_profile.dart';
 import 'package:fitness_mobile/services/auth_service.dart';
@@ -107,9 +108,32 @@ class UserProfileView extends StatelessWidget {
               children: [
                 const Text('Body Fat:'),
                 Text(
-                    '${(controller.userModel.value?.fatPercent ?? 0).toPercentFormat() } %')
+                    '${(controller.userModel.value?.fatPercent ?? 0).toPercentFormat()} %')
               ],
             ),
+            const SizedBox(height: 12),
+            const Divider(
+              height: 4,
+              thickness: 1,
+            ),
+            const SizedBox(height: 12),
+            if (controller.centerModel.value != null)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Center:'),
+                  InkWell(
+                    onTap: () {
+                      Get.to(() => CenterView());
+                    },
+                    child: Text(
+                      (controller.centerModel.value?.fullname ?? ''),
+                      style:
+                          const TextStyle(decoration: TextDecoration.underline),
+                    ),
+                  )
+                ],
+              ),
             const SizedBox(height: 24),
             TextButton(
                 onPressed: () {

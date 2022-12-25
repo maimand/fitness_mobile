@@ -36,6 +36,7 @@ class UserModel {
   final int? age;
   final double? fatPercent;
   final String? gender;
+  final String? code;
 
   UserModel(
       {this.fullname,
@@ -44,6 +45,7 @@ class UserModel {
       this.weight,
       this.fatPercent,
       this.age,
+      this.code,
       this.gender});
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
@@ -108,4 +110,28 @@ class UserInfoAdvancePredictRequest {
       _$UserInfoAdvancePredictRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserInfoAdvancePredictRequestToJson(this);
+}
+
+@JsonSerializable()
+class CenterModel {
+  final String? fullname;
+  final String? email;
+  final String? code;
+  final String? phone;
+  final String? image;
+  final String? description;
+  final String? website;
+
+  CenterModel({this.fullname,
+    this.phone,
+    this.email,
+    this.image,
+    this.description,
+    this.website,
+    this.code});
+
+  factory CenterModel.fromJson(Map<String, dynamic> json) =>
+      _$CenterModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CenterModelToJson(this);
 }

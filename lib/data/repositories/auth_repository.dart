@@ -22,6 +22,12 @@ class AuthRepository {
     return result;
   }
 
+  Future<CenterModel> getCenterInfo() async {
+    final response = await provider.getCenterInfo();
+    final result = CenterModel.fromJson(response.body);
+    return result;
+  }
+
   Future<void> register(
       {required String fullname,
       required String password,

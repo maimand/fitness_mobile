@@ -42,6 +42,7 @@ Map<String, dynamic> _$FoodToJson(Food instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'ration': instance.ration,
+      'image': instance.image,
       'calo': instance.calo,
       'protein': instance.protein,
       'fat': instance.fat,

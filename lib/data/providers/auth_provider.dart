@@ -12,6 +12,7 @@ class AuthProvider {
   final String resetPasswordUrl = '$baseUrl/user/reset-password';
   final String registerUrl = '$baseUrl/user/new';
   final String userInfoUrl = '$baseUrl/user/get-info';
+  final String centerInfoUrl = '$baseUrl/user/get-center-info';
   final String updateUserInfoUrl = '$baseUrl/user/update';
 
   final String predictUrl = '$predictFatUrl/advanced-fat-predict';
@@ -28,6 +29,10 @@ class AuthProvider {
 
   Future<HttpResponse> getUserInfo() {
     return networkService.get(userInfoUrl);
+  }
+
+  Future<HttpResponse> getCenterInfo() {
+    return networkService.get(centerInfoUrl);
   }
 
   Future<HttpResponse> register(

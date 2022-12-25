@@ -75,7 +75,7 @@ class SignUpAdditionalForm extends StatelessWidget {
               validator: MultiValidator(
                   [RequiredValidator(errorText: 'Please enter')]),
               decoration: const InputDecoration(
-                hintText: "Your neck measure",
+                hintText: "Your neck measure(cm)",
               ),
             ),
           ),
@@ -91,7 +91,7 @@ class SignUpAdditionalForm extends StatelessWidget {
               validator: MultiValidator(
                   [RequiredValidator(errorText: 'Please enter')]),
               decoration: const InputDecoration(
-                hintText: "Your chest measure",
+                hintText: "Your chest measure(cm)",
               ),
             ),
           ),
@@ -107,7 +107,7 @@ class SignUpAdditionalForm extends StatelessWidget {
               validator: MultiValidator(
                   [RequiredValidator(errorText: 'Please enter')]),
               decoration: const InputDecoration(
-                hintText: "Your waist measure",
+                hintText: "Your waist measure(cm)",
               ),
             ),
           ),
@@ -123,7 +123,7 @@ class SignUpAdditionalForm extends StatelessWidget {
               validator: MultiValidator(
                   [RequiredValidator(errorText: 'Please enter')]),
               decoration: const InputDecoration(
-                hintText: "Your hip measure",
+                hintText: "Your hip measure(cm)",
               ),
             ),
           ),
@@ -139,7 +139,7 @@ class SignUpAdditionalForm extends StatelessWidget {
               validator: MultiValidator(
                   [RequiredValidator(errorText: 'Please enter')]),
               decoration: const InputDecoration(
-                hintText: "Your thingh measure",
+                hintText: "Your thingh measure(cm)",
               ),
             ),
           ),
@@ -155,7 +155,7 @@ class SignUpAdditionalForm extends StatelessWidget {
               validator: MultiValidator(
                   [RequiredValidator(errorText: 'Please enter')]),
               decoration: const InputDecoration(
-                hintText: "Your weight",
+                hintText: "Your weight(kg)",
               ),
             ),
           ),
@@ -171,7 +171,7 @@ class SignUpAdditionalForm extends StatelessWidget {
               validator: MultiValidator(
                   [RequiredValidator(errorText: 'Please enter')]),
               decoration: const InputDecoration(
-                hintText: "Your height",
+                hintText: "Your height(cm)",
               ),
             ),
           ),
@@ -186,7 +186,7 @@ class SignUpAdditionalForm extends StatelessWidget {
               validator: MultiValidator(
                   [RequiredValidator(errorText: 'Please enter')]),
               decoration: const InputDecoration(
-                hintText: "Your gender",
+                hintText: "Your gender(male/female)",
               ),
             ),
           ),
